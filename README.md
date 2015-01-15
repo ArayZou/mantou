@@ -1,7 +1,12 @@
-# mantou社区
+mantou社区
+=============
 
-**基于：**
-nodejs 
-gulp
-express
-Handlebars
+#使用：#
+起服务：gulp server
+
+#基于：#
+>nodejs 
+>gulp
+>express
+>Handlebars
+>sass
