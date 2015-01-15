@@ -58,3 +58,11 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+
+//server
+var server = app.listen(3000, function () {
+
+  var host = server.address().address
+  var port = server.address().port
+
+})
