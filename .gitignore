@@ -158,3 +158,5 @@ $RECYCLE.BIN/
 # Mac desktop service store files
 .DS_Store
 /node_modules
+
+/web/public/.css/style.css
