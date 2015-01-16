@@ -159,4 +159,4 @@ $RECYCLE.BIN/
 .DS_Store
 /node_modules
 
-/web/public/.css/style.css
+/web/public/.css
