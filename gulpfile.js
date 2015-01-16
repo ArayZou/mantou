@@ -1,22 +1,22 @@
 var gulp = require('gulp'),
+    watch = require('gulp-watch'),
     server = require('gulp-develop-server'),
     plugins = require('gulp-load-plugins')();
 
-gulp.task('styles', function() {
-    return gulp.src('./web/public/scss/*.scss')
-        .pipe(plugins.plumber())
+gulp.task('default', ['server'], function() {
+    //watch sass change & compile
+    gulp.src('./web/public/scss/*.scss')
+        .pipe(watch('./web/public/scss/*.scss'))
         .pipe(plugins.sass())
-        // .pipe($.autoprefixer('last 3 version'))
-        .pipe(gulp.dest('./web/public/.css/'))
-        // .pipe($.size({title: '------------------------- [ Styles ]'}));
+        .pipe(gulp.dest('./web/public/.css/'));
 });
 
-// run server
+//start server
 gulp.task('server', function() {
     server.listen({path: './web/app.js'});
 });
 
 // restart server if app.js changed
-gulp.task( 'server:restart', function() {
+gulp.task('server:restart', function() {
     gulp.watch(['./web/app.js'], server.restart);
 });
