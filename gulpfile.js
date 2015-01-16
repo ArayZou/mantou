@@ -5,7 +5,6 @@ var gulp = require('gulp'),
 // 启动
 gulp.task('default', ['server','styles'], function() {
     gulp.watch('./web/public/scss/*.scss', ['styles']);
-    gulp.watch('./web/public/img/**', ['images']);
 });
 
 // watch sass change & compile
