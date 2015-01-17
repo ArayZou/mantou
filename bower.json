@@ -1,0 +1,20 @@
+{
+  "name": "mantou",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ArayZou/mantou",
+  "authors": [
+    "loveLibra <github_xq@126.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.1"
+  }
+}
