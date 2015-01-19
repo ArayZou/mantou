@@ -20,11 +20,11 @@ gulp.task('styles', function() {
 
 //minify css
 gulp.task('minify-css',['styles'], function() {
-  gulp.src('./web/public/css/mantou.css')
-    .pipe(gulp.dest('./web/public/css/'))
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(minifyCSS({keepBreaks:true}))
-    .pipe(gulp.dest('./web/public/dist/'))
+    gulp.src('./web/public/css/mantou.css')
+        .pipe(gulp.dest('./web/public/css/'))
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(minifyCSS({keepBreaks:true}))
+        .pipe(gulp.dest('./web/public/dist/'))
 });
 
 // start express server

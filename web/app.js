@@ -18,6 +18,10 @@ app.set('view engine', 'hbs');
 // use: {{> footer }}
 hbs.registerPartials(__dirname + '/views/partials');
 
+
+// mongodb setup
+require( './db' );
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
