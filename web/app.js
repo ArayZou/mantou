@@ -20,7 +20,7 @@ hbs.registerPartials(__dirname + '/views/partials');
 
 
 // mongodb setup
-require( './db' );
+require( './models' );
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));

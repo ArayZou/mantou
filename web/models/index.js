@@ -8,9 +8,7 @@ db.once('open', function (callback) {
     console.log('mongodb open');
 });
 
-var Users = new mongoose.Schema({
-    user_id    : String,
-    password   : String,
-    email      : String
-});
-mongoose.model( 'Users', Users );
+// models
+require('./user');
+
+exports.User = mongoose.model('User');
