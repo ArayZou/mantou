@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/mantou');
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function (callback) {
-    console.log('mongodb open');
+mongoose.connect('mongodb://localhost/mantou', function(err) {
+    if (err) {
+        console.error('connect to %s error: ', config.db, err.message);
+        process.exit(1);
+    } else {
+        console.log('mongodb open');
+    }
 });
 
 // models
