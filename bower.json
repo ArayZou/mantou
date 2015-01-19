@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.1"
+    "bootstrap": "~3.3.1",
+    "handlebars": "~2.0.0"
   }
 }
