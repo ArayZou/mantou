@@ -1,4 +1,4 @@
-#index-container{
+.index-container{
     height: 100%;
     width: 100%;
     background: url('http://dn-xuqi.qbox.me/1.jpg') no-repeat;
@@ -14,7 +14,7 @@
             &:last-child{
                 margin-bottom: 0;
             }
-            &#login-btn{
+            &.login{
                 color: #449d44;
             }
         }
@@ -25,21 +25,21 @@
             width: 100%;
         }
     }
-}
-#login-signup-panel{
-    width: 600px;
-    margin: -130px 0 0 -300px;
-    position: fixed;
-    display: none;
-    top: 50%;
-    left: 50%;
-    #close-panel-btn{
-        float: right;
-        color: #AAA;
-        font-size: 16px;
-        margin-top: -16px;
-        &:hover{
-            color: #666;
-        };
+    .panel{
+        width: 600px;
+        margin: -130px 0 0 -300px;
+        position: fixed;
+        display: none;
+        top: 50%;
+        left: 50%;
+        .close{
+            float: right;
+            color: #AAA;
+            font-size: 16px;
+            margin-top: -16px;
+            &:hover{
+                color: #666;
+            };
+        }
     }
 }
