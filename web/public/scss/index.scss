@@ -20,13 +20,15 @@
         }
         &.footer{
             text-align: center;
+            bottom: 20px;
+            position: absolute;
+            width: 100%;
         }
     }
 }
 #login-signup-panel{
     width: 600px;
-    margin-right: auto;
-    margin-left: auto;
+    margin: -130px 0 0 -300px;
     position: fixed;
     display: none;
     top: 50%;
