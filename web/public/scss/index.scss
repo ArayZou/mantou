@@ -1,12 +1,45 @@
 #index-container{
-    height: 1000px;
+    height: 100%;
     width: 100%;
-    background-image: url('http://dn-xuqi.qbox.me/1.jpg');
+    background: url('http://dn-xuqi.qbox.me/1.jpg') no-repeat;
+    .container-item{
+        width: 230px;
+        margin-right: auto;
+        margin-left: auto;
+        &.content button{
+            display: block;
+            width: 230px;
+            height: 40px;
+            margin-bottom: 10px;
+            &:last-child{
+                margin-bottom: 0;
+            }
+            &#login-btn{
+                color: #449d44;
+            }
+        }
+        &.footer{
+            text-align: center;
+            bottom: 20px;
+            position: absolute;
+            width: 100%;
+        }
+    }
 }
 #login-signup-panel{
     width: 600px;
-    margin-right: auto;
-    margin-left: auto;
+    margin: -130px 0 0 -300px;
     position: fixed;
     display: none;
+    top: 50%;
+    left: 50%;
+    #close-panel-btn{
+        float: right;
+        color: #AAA;
+        font-size: 16px;
+        margin-top: -16px;
+        &:hover{
+            color: #666;
+        };
+    }
 }
