@@ -6,7 +6,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     app = express(),
     hbs = require('hbs'),
-    server;
+    webRouter = require('./router');
 
 
 
@@ -31,7 +31,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //router
-require('./routes/router.js')(app);
+app.use('/', webRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
@@ -66,7 +67,6 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 //server
-server = app.listen(3000, function () {
-    var host = server.address().address,
-        port = server.address().port;
+app.listen(3000, function () {
+    console.log('server')
 });
