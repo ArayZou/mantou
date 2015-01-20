@@ -6,7 +6,7 @@ var gulp = require('gulp'),
     plugins = require('gulp-load-plugins')();
 
 // 启动
-gulp.task('default', ['server','styles'], function() {
+gulp.task('default', ['server','styles','server:restart'], function() {
     gulp.watch('./web/public/scss/*.scss', ['styles']);
 });
 
@@ -34,6 +34,6 @@ gulp.task('server', function() {
 
 // restart server if app.js changed
 gulp.task('server:restart', function() {
-    gulp.watch(['./web/app.js'], server.restart);
+    gulp.watch(['./web/app.js','./web/router.js','./web/controllers/*.js','./web/models/*.js'], server.restart);
 });
 

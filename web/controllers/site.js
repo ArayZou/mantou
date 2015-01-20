@@ -9,5 +9,5 @@ exports.index = function (req, res, next) {
         console.log('new user');
     });
     // 渲染
-    res.render('index', {title: 'mantou_index'});
+    res.render('index', {title: 'index'});
 }
