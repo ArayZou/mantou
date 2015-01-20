@@ -3,9 +3,9 @@ function genLoginSignup(isLogin) {
         sWdith = document.documentElement.scrollWidth,
         wHeight = document.documentElement.clientHeight,
         wWidth = document.documentElement.clientWidth,
-        html, login, mask, panel, pHeight, pWidth;
-    html = Handlebars.compile($('#login-signup-tpl').html());
-    $('body').append(html({isLogin: isLogin}));
+        template, mask, panel, pHeight, pWidth;
+    template = Handlebars.compile($('#login-signup-tpl').html());
+    $('body').append(template({isLogin: isLogin}));
     mask = document.getElementsByClassName('mask')[0];
     mask.style.height = sHeight + 'px';
     mask.style.width = sWdith + 'px';
@@ -15,4 +15,8 @@ function genLoginSignup(isLogin) {
     pWidth = panel.offsetWidth;
     panel.style.left = (sWdith - pWidth) / 2 + 'px';
     panel.style.top = (sHeight - pHeight) / 2 + 'px';
+    $('#login-signup-panel .close').click(function() {
+        document.body.removeChild(mask);
+        document.body.removeChild(panel);
+    });
 }
