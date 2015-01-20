@@ -8,6 +8,10 @@ exports.index = function (req, res, next) {
     }).save(function(err){
         console.log('new user');
     });
+    var isLogin = true;
     // 渲染
-    res.render('index', {title: 'index'});
+    res.render('index', {
+        title: 'index',
+        isLogin: isLogin
+    });
 }

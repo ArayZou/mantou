@@ -4,8 +4,8 @@ function genLoginSignup(isLogin) {
         wHeight = document.documentElement.clientHeight,
         wWidth = document.documentElement.clientWidth,
         html, login, mask, panel, pHeight, pWidth;
-    html = Handlebars.compile($('#login-signup-tpl').html());
-    $('body').append(html({isLogin: isLogin}));
+    // html = Handlebars.compile($('#login-signup-tpl').html());
+    // $('body').append(html({isLogin: isLogin}));
     mask = document.getElementsByClassName('mask')[0];
     mask.style.height = sHeight + 'px';
     mask.style.width = sWdith + 'px';
