@@ -6,6 +6,7 @@ function genLoginSignup(isLogin) {
         html, login, mask, panel, pHeight, pWidth;
     // html = Handlebars.compile($('#login-signup-tpl').html());
     // $('body').append(html({isLogin: isLogin}));
+
     mask = document.getElementsByClassName('mask')[0];
     mask.style.height = sHeight + 'px';
     mask.style.width = sWdith + 'px';
@@ -15,4 +16,8 @@ function genLoginSignup(isLogin) {
     pWidth = panel.offsetWidth;
     panel.style.left = (sWdith - pWidth) / 2 + 'px';
     panel.style.top = (sHeight - pHeight) / 2 + 'px';
+    $('#login-signup-panel .close').click(function() {
+        document.body.removeChild(mask);
+        document.body.removeChild(panel);
+    });
 }
