@@ -1,53 +1,93 @@
-<script id="login-signup-tpl" type="text/x-handlebars-template">
-    <div class="mask"></div>
-    <div id="login-signup-panel" class="panel panel-default login-signup">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                \{{#if isLogin}}
-                    登录
-                \{{^}}
-                    注册成为馒头会员
-                \{{/if}}
-            </h3>
-            <span id="close-panel-btn" class="close glyphicon glyphicon-remove-circle"></span>
-        </div>
-        <div class="panel-body">
-            <form class="form-horizontal" role="form">
-                <div class="form-group">
-                    <label for="userEmail" class="col-sm-2 control-label">邮箱</label>
-                    <div class="col-sm-9">
-                      <input type="email" class="form-control" id="userEmail">
-                    </div>
+<div class="login-signup-panel">
+    <div id="login-panel" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                       登录
+                    </h4>
                 </div>
-                <div class="form-group">
-                    <label for="userPassword" class="col-sm-2 control-label">密码</label>
-                    <div class="col-sm-9">
-                        <input type="password" class="form-control" id="userPassword">
-                    </div>
-                </div>
-                \{{#if isLogin}}
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-9">
-                        <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> 记住我
-                            </label>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="userEmail-login" class="col-sm-2 control-label">邮箱</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" id="userEmail-login">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="userPassword-login" class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="userPassword-login">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox"> 记住我
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                \{{/if}}
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-9">
-                        <button type="submit" class="btn btn-default">
-                            \{{#if isLogin}}
-                                登录
-                            \{{^}}
-                                注册
-                            \{{/if}}
-                        </button>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">
+                       登录
+                    </button>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
-</script>
+    <div id="signup-panel" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                       注册
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="userEmail-signup" class="col-sm-2 control-label">邮箱</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" id="userEmail-signup">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="userNickName" class="col-sm-2 control-label">昵称</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="userNickName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="userPassword-signup" class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="userPassword-signup">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="passwordConfirm" class="col-sm-2 control-label">密码确认</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="passwordConfirm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">
+                       注册
+                    </button>
+                </div>
+            <div>
+        </div>
+    </div>
+</div>
