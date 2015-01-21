@@ -3,19 +3,31 @@
     width: 100%;
     background: url('http://dn-xuqi.qbox.me/1.jpg') no-repeat;
     .container-item{
-        width: 230px;
+        //vars
+        $width: 230px;
+        $btn-height: 40px;
+        $btn-margin-bottom: 10px;
+        //vars-end
+        width: $width;
         margin-right: auto;
         margin-left: auto;
-        &.content button{
-            display: block;
-            width: 230px;
-            height: 40px;
-            margin-bottom: 10px;
-            &:last-child{
-                margin-bottom: 0;
-            }
-            &.login{
-                color: #449d44;
+        &.content{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -$width / 2;
+            margin-top: -($btn-height * 2 + $btn-margin-bottom) / 2;
+            button{
+                display: block;
+                width: $width;
+                height: $btn-height;
+                margin-bottom: $btn-margin-bottom;
+                &:last-child{
+                    margin-bottom: 0;
+                }
+                &.login{
+                    color: #449d44;
+                }
             }
         }
         &.footer{
