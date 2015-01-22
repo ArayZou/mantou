@@ -1,6 +1,8 @@
 //公共
 @import "./web/public/scss/common.scss";
-@import "./web/public/scss/normalize.scss";
+
+//组件
+@import "./web/public/scss/menubar.scss";
 
 //页面
 @import "./web/public/scss/index.scss";
