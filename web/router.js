@@ -1,14 +1,12 @@
-var express = require('express'),
-    site = require('./controllers/site'),
+var site = require('./controllers/site'),
     user = require('./controllers/user'),
-    json = require('./controllers/json'),
-    router = express.Router();
+    json = require('./controllers/json');
 
-// index
-router.get('/', site.index);
-// user
-router.get('/user', user.index);
-// json
-router.get('/json/:jsonfunc', json.index);
-
-module.exports = router;
+module.exports = function(app) {
+    app.get('/', site.index);
+    //User
+    app.post('/user/signup', user.signup);
+    app.post('/user/login', user.login);
+    // json
+    app.get('/json/:jsonfunc', json.index);
+};

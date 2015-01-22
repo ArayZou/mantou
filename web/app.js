@@ -1,14 +1,14 @@
 var express = require('express'),
     path = require('path'),
+    mongoose = require('mongoose'),
     favicon = require('serve-favicon'),
     logger = require('morgan'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     app = express(),
-    hbs = require('hbs'),
-    webRouter = require('./router');
+    hbs = require('hbs');
 
-
+mongoose.connect('mongodb://localhost/mantou')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -17,10 +17,6 @@ app.set('view engine', 'hbs');
 // hbs partials
 // use: {{> footer }}
 hbs.registerPartials(__dirname + '/views/partials');
-
-
-// mongodb setup
-// require( './models' );
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -31,7 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //router
-app.use('/', webRouter);
+require('./router')(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

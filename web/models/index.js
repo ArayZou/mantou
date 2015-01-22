@@ -1,15 +1,15 @@
-var mongoose = require('mongoose');
+// var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/mantou', function(err) {
-    if (err) {
-        console.error('connect to %s error: ', config.db, err.message);
-        process.exit(1);
-    } else {
-        console.log('mongodb open');
-    }
-});
+// mongoose.connect('mongodb://localhost/mantou', function(err) {
+//     if (err) {
+//         console.error('connect to %s error: ', config.db, err.message);
+//         process.exit(1);
+//     } else {
+//         console.log('mongodb open');
+//     }
+// });
 
-// models
-require('./user');
+// // models
+// require('./user');
 
-exports.User = mongoose.model('User');
+// exports.User = mongoose.model('User');

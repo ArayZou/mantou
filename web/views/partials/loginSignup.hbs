@@ -1,93 +1,82 @@
 <div class="login-signup-panel">
     <div id="login-panel" class="modal">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title">
-                       登录
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label for="userEmail-login" class="col-sm-2 control-label">邮箱</label>
-                            <div class="col-sm-9">
-                                <input type="email" class="form-control" id="userEmail-login">
+            <form action="/user/login" method="POST" role="form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title">
+                           登录
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label for="user-name-login" class="col-sm-2 control-label">用户名</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="user-name-login" name="name">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="userPassword-login" class="col-sm-2 control-label">密码</label>
-                            <div class="col-sm-9">
-                                <input type="password" class="form-control" id="userPassword-login">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                      <input type="checkbox"> 记住我
-                                    </label>
+                            <div class="form-group">
+                                <label for="user-pwd-login" class="col-sm-2 control-label">密码</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="user-pwd-login" name="password">
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                           登录
+                        </button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">
-                       登录
-                    </button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
     <div id="signup-panel" class="modal">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title">
-                       注册
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label for="userEmail-signup" class="col-sm-2 control-label">邮箱</label>
-                            <div class="col-sm-9">
-                                <input type="email" class="form-control" id="userEmail-signup">
+            <form action="/user/signup" method="POST" role="form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title">
+                           注册
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label for="user-name-signup" class="col-sm-2 control-label">用户名</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="user-name-signup" name="name">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="userNickName" class="col-sm-2 control-label">昵称</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="userNickName">
+                            <div class="form-group">
+                                <label for="user-pwd-signup" class="col-sm-2 control-label">密码</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="user-pwd-signup" name="password">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="userPassword-signup" class="col-sm-2 control-label">密码</label>
-                            <div class="col-sm-9">
-                                <input type="password" class="form-control" id="userPassword-signup">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="passwordConfirm" class="col-sm-2 control-label">密码确认</label>
-                            <div class="col-sm-9">
-                                <input type="password" class="form-control" id="passwordConfirm">
+                            <div class="form-group">
+                                <label for="passwordConfirm" class="col-sm-2 control-label">密码确认</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="passwordConfirm">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">
-                       注册
-                    </button>
-                </div>
-            <div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                           注册
+                        </button>
+                    </div>
+                <div>
+            </form>
         </div>
     </div>
 </div>
