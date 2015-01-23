@@ -4,6 +4,12 @@ var site = require('./controllers/site'),
     getimg = require('./controllers/getimg');
 
 module.exports = function(app) {
+    //pre handler user
+    app.use(function(req, res, next) {
+        var _ = req.session.user;
+        app.locals.user = _;
+        next();
+    });
     app.get('/', site.index);
     //User
     app.post('/user/signup', user.signup);

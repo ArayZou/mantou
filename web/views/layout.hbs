@@ -2,14 +2,10 @@
 <html>
     <head>
         <title>{{title}}</title>
-        <link rel="stylesheet" href='/libs/bootstrap/dist/css/bootstrap.min.css'>
-        <link rel='stylesheet' href='/css/mantou.css' />
+        {{> header}}
     </head>
     <body>
         {{{body}}}
-        {{> loginSignup }}
-        <script type="text/javascript" src="/libs/jquery/dist/jquery.min.js"></script>
-        <script type="text/javascript" src="/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/libs/handlebars/handlebars.min.js"></script>
+        {{> footer}}
     </body>
 </html>
