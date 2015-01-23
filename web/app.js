@@ -1,14 +1,17 @@
 var express = require('express'),
     path = require('path'),
     mongoose = require('mongoose'),
+    session = require('express-session'),
+    mongoStore = require('connect-mongo')(session),
     favicon = require('serve-favicon'),
     logger = require('morgan'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     app = express(),
-    hbs = require('hbs');
+    hbs = require('hbs'),
+    mongoUrl = 'mongodb://localhost/mantou';
 
-mongoose.connect('mongodb://localhost/mantou')
+mongoose.connect(mongoUrl)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,6 +28,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    secret: 'mantou',
+    store: new mongoStore({
+        url: mongoUrl,
+        collections: 'sessions'
+    })
+}));
 
 //router
 require('./router')(app);

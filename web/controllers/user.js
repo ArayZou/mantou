@@ -41,12 +41,15 @@ exports.login = function(req, res) {
         if (!user) {
             return res.redirect('/');
         }
+
         user.pwdMatch(pwd, function(err, isMatch) {
             if (err) {
                 console.log(err);
             }
+
             if (isMatch) {
                 req.session.user = user;
+                console.log(req.session)
             }
             return res.redirect('/');
         });
