@@ -1,3 +1,64 @@
 .menubar{
     float: left;
+    width: 200px;
+    border-right: 1px solid #ddd;
+    height: 100%;
+    background: #F0F0F0;
+    .logo_img{
+        width: 200px;
+        height: 120px;
+        margin: 20px auto 0;
+        background: url(/img/logo.png) center no-repeat;
+        background-size: 120px 120px;
+        border-bottom: 1px solid #ddd;
+    }
+    .menu_list{
+        li {
+            border-bottom: 1px solid #ddd;
+            a{
+                display: block;
+                position: relative;
+                padding:0 0 0 10px;
+                height: 50px;
+                line-height: 50px;
+                font-size: 14px;
+                color: #333;
+                .glyphicon{
+                    font-size: 30px;
+                    vertical-align: middle;
+                    margin-right: 5px;
+                    display: inline-block;
+                    width: 40px;
+                    height: 40px;
+                    line-height: 36px;
+                    text-align: center;
+                }
+                .menuimg{
+                    display: inline-block;
+                    width: 40px;
+                    height: 40px;
+                    margin-right: 5px;
+                    img{
+                        border-radius: 4px;
+                    }
+                }
+                sup{
+                    position: absolute;
+                    right: 10px;
+                    top: 18px;
+                    padding: 2px 6px;
+                    line-height: 12px;
+                    font-size: 12px;
+                    color: #fff;
+                    text-align: center;
+                    background: #3a2;
+                    border-radius: 12px;
+                }
+                &:hover{
+                    background: #E9E9E9;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
 }

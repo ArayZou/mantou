@@ -7,15 +7,31 @@ li{
 }
 // 附加reset end
 
-html, body{
+// 全局样式
+html,
+body,
+.webbody{
+    width: 100%;
     height: 100%;
 }
-
 body {
     font: 12px/18px Arial,'Droid Sans','Microsoft YaHei','Hiragino Sans GB',STXihei,'simsun','sans-serif';
     color: #333;
 }
-
 a {
     color: #00B7FF;
 }
+// 全局样式 end
+
+// blocklist
+.blocklist{
+    li{
+        float: left;
+        width: 320px;
+        height: 240px;
+        overflow: hidden;
+        margin:0 20px 20px 0;
+        position: relative;
+    }
+}
+// blocklist end

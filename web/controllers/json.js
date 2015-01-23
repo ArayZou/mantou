@@ -5,7 +5,7 @@ exports.index = function (req, res, next) {
     jsonfunc[funcName](res);
 }
 
-var models = require('../models');
+var models = require('../models/user');
 var User = models.User;
 
 //全局json方法

@@ -9,6 +9,7 @@ exports.home = function (req, res, next) {
     var ifLogin = Math.random()>0.5?true:false;
     // 渲染
     res.render('home', {
+        page: 'home',
         title: 'home',
         ifLogin: ifLogin
     });

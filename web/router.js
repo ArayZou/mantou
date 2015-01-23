@@ -1,7 +1,6 @@
 var site = require('./controllers/site'),
     user = require('./controllers/user'),
-    json = require('./controllers/json'),
-    getimg = require('./controllers/getimg');
+    json = require('./controllers/json');
 
 module.exports = function(app) {
     app.get('/', site.index);
@@ -12,6 +11,4 @@ module.exports = function(app) {
     app.get('/json/:jsonfunc', json.index);
     // home
     app.get('/home', site.home);
-    // getimg img-placehold
-    app.get('/getimg/:size', getimg.index);
 };

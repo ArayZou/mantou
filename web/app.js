@@ -8,7 +8,15 @@ var express = require('express'),
     app = express(),
     hbs = require('hbs');
 
-mongoose.connect('mongodb://localhost/mantou')
+// mongodb connect
+mongoose.connect('mongodb://localhost/mantou', function(err) {
+    if (err) {
+        console.error('connect to %s error: ' + err.message);
+        process.exit(1);
+    } else {
+        console.log('mongodb connect');
+    }
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,7 +27,7 @@ app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

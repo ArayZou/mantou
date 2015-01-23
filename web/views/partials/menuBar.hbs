@@ -1,7 +1,7 @@
 <div class="menubar">
-    <div class="icon_logo">logo</div>
+    <div class="logo_img"></div>
     {{#if ifLogin}}
-    <ul>
+    <ul class="menu_list">
         <li>
             <a href="/mine">
                 <span class="menuimg">
@@ -48,9 +48,15 @@
                 <sup>99</sup>
             </a>
         </li>
+        <li>
+            <a href="/morefollows">
+                <i class="glyphicon glyphicon-log-out" aria-hidden="true"></i>
+                <span class="menutext">退出</span>
+            </a>
+        </li>
     </ul>
     {{else}}
-    <ul>
+    <ul class="menu_list">
         <li>
             <a href="/home">
                 <i class="glyphicon glyphicon-home" aria-hidden="true"></i>
