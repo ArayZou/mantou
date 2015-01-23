@@ -10,13 +10,15 @@ exports.signup = function(req, res) {
         if (err) {
             console.log(err);
         }
-        if (user) {
+
+        if (user.length > 0) {
             return res.redirect('/');
         } else {
             user = new User({
                 name: req_body.name,
                 password: req_body.password
             });
+
             user.save(function(err, user) {
                 if (err) {
                     console.log(err);
@@ -36,7 +38,7 @@ exports.login = function(req, res) {
         if (err) {
             console.log(err);
         }
-        if (!user) {console.log(11)
+        if (!user) {
             return res.redirect('/');
         }
         user.pwdMatch(pwd, function(err, isMatch) {
