@@ -1,15 +1,18 @@
 var express = require('express'),
     path = require('path'),
     mongoose = require('mongoose'),
+    session = require('express-session'),
+    mongoStore = require('connect-mongo')(session),
     favicon = require('serve-favicon'),
     logger = require('morgan'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     app = express(),
-    hbs = require('hbs');
+    hbs = require('hbs'),
+    mongoUrl = 'mongodb://localhost/mantou';
 
-// mongodb connect
-mongoose.connect('mongodb://localhost/mantou', function(err) {
+
+mongoose.connect(mongoUrl, function(err) {
     if (err) {
         console.error('connect to %s error: ' + err.message);
         process.exit(1);
@@ -33,6 +36,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    secret: 'mantou',
+    store: new mongoStore({
+        url: mongoUrl,
+        collections: 'sessions'
+    })
+}));
 
 //router
 require('./router')(app);
