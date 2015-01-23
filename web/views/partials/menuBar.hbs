@@ -1,13 +1,13 @@
 <div class="menubar">
     <div class="logo_img"></div>
-    {{#if ifLogin}}
+    {{#if user}}
     <ul class="menu_list">
         <li>
             <a href="/mine">
                 <span class="menuimg">
                     <img src="http://placehold.it/40x40/09f/fff">
                 </span>
-                <span class="menutext">username</span>
+                <span class="menutext">{{user.name}}</span>
                 <sup>10</sup>
             </a>
         </li>
@@ -49,7 +49,7 @@
             </a>
         </li>
         <li>
-            <a href="/morefollows">
+            <a id="userlogout" href="javascript:;">
                 <i class="glyphicon glyphicon-log-out" aria-hidden="true"></i>
                 <span class="menutext">退出</span>
             </a>
@@ -65,13 +65,13 @@
             </a>
         </li>
         <li>
-            <a id="signin" href="javascript:;" data-toggle="modal" data-target="#signup-panel">
+            <a id="signin" href="javascript:;" data-toggle="modal" data-target="#login-panel">
                 <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
                 <span class="menutext">登录</span>
             </a>
         </li>
         <li>
-            <a id="signup" href="javascript:;" data-toggle="modal" data-target="#login-panel">
+            <a id="signup" href="javascript:;" data-toggle="modal" data-target="#signup-panel">
                 <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
                 <span class="menutext">注册</span>
             </a>

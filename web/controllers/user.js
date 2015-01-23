@@ -23,7 +23,7 @@ exports.signup = function(req, res) {
                 if (err) {
                     console.log(err);
                 }
-                res.redirect('/');
+                res.redirect('/home');
             });
         }
     });
@@ -51,7 +51,7 @@ exports.login = function(req, res) {
                 req.session.user = user;
                 console.log(req.session)
             }
-            return res.redirect('/');
+            return res.redirect('/home');
         });
     });
 };

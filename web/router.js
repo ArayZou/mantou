@@ -13,6 +13,7 @@ module.exports = function(app) {
     //User
     app.post('/user/signup', user.signup);
     app.post('/user/login', user.login);
+    app.post('/user/logout', user.logout);
     // json
     app.get('/json/:jsonfunc', json.index);
     // home
