@@ -21,17 +21,54 @@ body {
 a {
     color: #00B7FF;
 }
+.mtcontent{
+    float: left;
+    padding:20px 0 0 20px;
+}
+.home_title{
+    margin:0 0 15px;
+    font-size: 34px;
+    line-height: 40px;
+}
 // 全局样式 end
 
 // blocklist
 .blocklist{
-    li{
+    .mtimg_block{
         float: left;
         width: 320px;
         height: 240px;
         overflow: hidden;
         margin:0 20px 20px 0;
         position: relative;
+        border-radius: 8px;
+        .block_img{
+            display: block;
+            width: 320px;
+            height: 240px;
+        }
+        .block_text{
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding:30px 30px 0;
+            width: 100%;
+            height: 100%;
+            box-sizing:border-box;
+            background: rgba(0,0,0,0.2);
+            .block_title{
+                font-size: 28px;
+                color: #fff;
+                line-height: 34px;
+                display: block;
+                margin-bottom: 10px;
+            }
+            .block_info{
+                font-size: 20px;
+                color: #fff;
+                line-height: 20px;
+            }
+        }
     }
 }
 // blocklist end
