@@ -1,5 +1,6 @@
 var site = require('./controllers/site'),
     user = require('./controllers/user'),
+    me = require('./controllers/me'),
     json = require('./controllers/json');
 
 module.exports = function(app) {
@@ -18,4 +19,6 @@ module.exports = function(app) {
     app.get('/json/:jsonfunc', json.index);
     // home
     app.get('/home', site.home);
+    //me
+    app.get('/me', me);
 };
