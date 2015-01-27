@@ -1,10 +1,22 @@
-<script type="text/x-handlebars" id="me-tpl">
-    <div class="me-page">
-        <div class="img-name">
-            <span class="me-img">
-                <img src="http://placehold.it/40x40/09f/fff">
-            </span>
-            <h1>{{user.name}}</h1>
+<div class="me-page">
+    <div class="img-name">
+        <span class="me-img">
+            <img src="http://placehold.it/40x40/09f/fff">
+        </span>
+        <label>{{user.name}}</label>
+    </div>
+    <div class="tabs">
+        <ul class="tab-head">
+            <li href="#my-collect">我的收藏</li>
+            <li href="my-pub">我的发布</li>
+        </ul>
+        <div class="tab-content">
+            <div id="my-collect" class="content"></div>
+            <div id="my-pub" class="content"></div>
         </div>
     </div>
-</script>
+    <button id="me-setting" class="setting btn">
+        <i class="fa fa-cog"></i>
+        个人设置
+    </button>
+</div>

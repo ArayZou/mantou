@@ -1,0 +1,24 @@
+.img-name{
+    margin-bottom: 10px;
+}
+
+.tabs{
+    .tab-head{
+        li{
+            display: inline-block;
+            height: 40px;
+            width: 140px;
+            line-height: 40px;
+            font-size: 14px;
+            text-align: center;
+            border: 1px solid;
+        }
+    }
+    .tab-content{
+        .content{
+            width: 100%;
+            height: 200px;
+            border: 1px solid red;
+        }
+    }
+}
