@@ -3,16 +3,8 @@
 }
 
 .tabs{
-    .tab-head{
-        li{
-            display: inline-block;
-            height: 40px;
-            width: 140px;
-            line-height: 40px;
-            font-size: 14px;
-            text-align: center;
-            border: 1px solid;
-        }
+    .nav-tabs{
+        font-size: 14px;
     }
     .tab-content{
         .content{
