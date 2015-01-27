@@ -3,12 +3,11 @@
 
 //组件
 @import "./web/public/scss/menubar.scss";
-
-//页面
-@import "./web/public/scss/index.scss";
-
-//登录
+@import "./web/public/scss/groupmenu.scss";
 @import "./web/public/scss/loginSignup.scss";
 
+//页面
+//着陆页
+@import "./web/public/scss/index.scss";
 //个人页
 @import "./web/public/scss/me.scss";

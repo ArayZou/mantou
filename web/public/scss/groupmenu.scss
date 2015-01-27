@@ -1,0 +1,9 @@
+.groupmenu{
+    width: 340px;
+    height: 100%;
+    border-right:1px solid #ddd;
+    box-sizing:border-box;
+    float: left;
+    margin:0 0 0 -340px;
+    overflow-y: auto;
+}
