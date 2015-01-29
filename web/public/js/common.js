@@ -1,4 +1,4 @@
-require(['js/conf'], function() {
+require(['../js/conf'], function() {
     require(['jquery'], function($) {
         $(function(){
             $('body').on('click','#userlogout',function(){

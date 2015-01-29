@@ -1,10 +1,17 @@
 <div class="groupmenu">
     <div>
-        {{groupname}}
+        <h2>{{groupname}}</h2>
+        <a href="javascript:;"><i class="glyphicon glyphicon-pencil"></i>发帖</a>
     </div>
-    <div>
-        <ul>
-            <li></li>
-        </ul>
-    </div>
+    <div class="group_serach"><input type="text" placeholder="搜索"></div>
+    <ul class="group_postlist">
+        <li>
+            <a class="post_link" href="">
+                <img class="userimg" src="http://placehold.it/40x40/09f/fff" alt="">
+                <span class="username">发帖人昵称</span>
+                <span class="posttitle">贴子title</span>
+                <span class="postinfo">贴子快照</span>
+            </a>
+        </li>
+    </ul>
 </div>

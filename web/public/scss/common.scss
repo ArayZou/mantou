@@ -34,11 +34,10 @@ a {
 .groupbody{
     float: left;
     padding:20px 0 0 20px;
-}
-.mtcontent,
-.groupbody{
-    overflow-y: auto;
     height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 .home_title{
     margin:0 0 15px;
@@ -49,6 +48,7 @@ a {
 
 // blocklist
 .blocklist{
+    margin-right: -20px;
     .mtimg_block{
         float: left;
         width: 320px;

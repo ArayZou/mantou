@@ -1,3 +1,3 @@
-require(['js/conf'], function(conf) {
+require(['../js/conf'], function(conf) {
     //Do SomeThing
 });
