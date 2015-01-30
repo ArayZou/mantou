@@ -1,3 +1,4 @@
-require(['../js/conf'], function() {
-    require(['bootstrap']);
+require(['bootstrap'],function(bootstrap){
+
 });
+

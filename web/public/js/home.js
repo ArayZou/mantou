@@ -1,7 +1,6 @@
-require(['../js/conf', '../js/common'], function(conf, comm) {
-    require(['jquery'], function($) {
-        $(function() {
-            comm.comEvt();
-        });
+require(['jquery','../js/common'], function($) {
+    $(function() {
+
     });
 });
+
