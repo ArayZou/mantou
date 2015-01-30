@@ -29,10 +29,10 @@ require(['../js/conf', '../js/common'], function(conf, comm) {
 
             $('#me-setting').click(function() {
                 var tpl = Handlebars.compile($('#setting-panel-tpl').html());
-                $('#tab-content').append(tpl());
+                $('#me-page').append(tpl());
             });
 
-            $('#tab-content').delegate('#close-setting', 'click', function() {
+            $('#me-page').delegate('#close-setting', 'click', function() {
                 $(this).closest('.panel').remove();
             });
         };
