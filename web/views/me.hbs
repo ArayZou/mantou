@@ -16,13 +16,13 @@
                     <li class="my-pub">
                         <a>我的发布</a>
                     </li>
+                    <button id="me-setting" class="setting btn">
+                        <i class="fa fa-cog"></i>
+                        个人设置
+                    </button>
                 </ul>
-                <div id="tab-content"></div>
+                <div id="tab-content" class="content"></div>
             </div>
-            <button id="me-setting" class="setting btn hide">
-                <i class="fa fa-cog"></i>
-                个人设置
-            </button>
         </div>
     </div>
 </div>
@@ -43,5 +43,28 @@
         \{{^}}
             没有发布过帖子～
         \{{/if}}
+    </div>
+</script>
+<script type="text/x-handlebars" id="setting-panel-tpl">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span id="close-setting">&times</span>
+        </div>
+        <div class="panel-body">
+            <div class="setting-tabs">
+                <ul class="nav nav-tabs">
+                    <li class="set-photo active">
+                        <a>我的头像</a>
+                    </li>
+                    <li class="set-photo">
+                        <a>个人资料</a>
+                    </li>
+                    <li class="set-photo">
+                        <a>修改密码</a>
+                    </li>
+                </ul>
+                <div id="setting-tab-content"></div>
+            </div>
+        </div>
     </div>
 </script>

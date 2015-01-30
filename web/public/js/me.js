@@ -1,6 +1,6 @@
 require(['../js/conf', '../js/common'], function(conf, comm) {
     require(['jquery', 'handlebars', 'bootstrap'], function($, Handlebars, Bootstrap) {
-        $(function() {
+        var initEvt = function() {
             comm.comEvt();//init common binding/setting
 
             $('#nav-tabs').delegate('li', 'click', function() {
@@ -26,6 +26,18 @@ require(['../js/conf', '../js/common'], function(conf, comm) {
                     }
                 });
             });
+
+            $('#me-setting').click(function() {
+                var tpl = Handlebars.compile($('#setting-panel-tpl').html());
+                $('#tab-content').append(tpl());
+            });
+
+            $('#tab-content').delegate('#close-setting', 'click', function() {
+                $(this).closest('.panel').remove();
+            });
+        };
+        $(function() {
+            initEvt();
 
             //init Tab active
             $('#nav-tabs li:first-child').click();
