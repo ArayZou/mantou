@@ -1,11 +1,12 @@
-require(['../js/conf'], function() {
-    require(['jquery'], function($) {
-        $(function(){
-            $('body').on('click','#userlogout',function(){
-                $.post('/user/logout',function(){
-                    window.location.href = '/';
-                });
+define(['../js/conf', 'jquery'], function(conf, $) {
+    var evtHandlers = function() {
+        $('#userLogout').click(function() {
+            $.post('/user/logout',function(){
+                window.location.href = '/';
             });
         });
-    });
+    };
+    return {
+        comEvt: evtHandlers
+    };
 });
