@@ -6,4 +6,127 @@
     float: left;
     margin:0 0 0 -340px;
     overflow-y: auto;
+    background: #F0F0F0;
+    .grouttitle{
+        height: 60px;
+        line-height: 60px;
+        h2{
+            float: left;
+            font-size: 24px;
+            margin: 0;
+            line-height: 60px;
+            font-weight: normal;
+            width: 70%;
+            text-indent: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-break: break-all;
+            word-wrap: break-word;
+        }
+        .postbtn{
+            cursor: pointer;
+            float: right;
+            font-size: 20px;
+            color: #333;
+            width: 20%;
+            text-align: center;
+            .glyphicon{
+                font-size: 14px;
+                margin-right: 3px;
+            }
+            &:hover{
+                color: #41a1e1;
+                text-decoration: none;
+            }
+        }
+    }
+    .group_search{
+        height: 40px;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        input{
+            float: left;
+            width: 80%;
+            border:0;
+            height: 38px;
+            padding:10px;
+            background: #fff;
+            font-size: 14px;
+        }
+        .searchbtn{
+            float: left;
+            width: 20%;
+            text-align: center;
+            height: 38px;
+            line-height: 38px;
+            border-left: 1px solid #ddd;
+            font-size: 14px;
+            .glyphicon{
+                margin-right: 3px;
+            }
+            &:hover{
+                text-decoration: none;
+                background: #41a1e1;
+                color: #fff;
+            }
+        }
+    }
+    .group_postlist{
+        li>a{
+            display: block;
+            width: 100%;
+            padding:10px 0 10px 60px;
+            position: relative;
+            border-bottom: 1px solid #ddd;
+            .userimg{
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                width: 40px;
+                height: 40px;
+                border-radius: 20px;
+                display: block;
+            }
+            .username{
+                display: block;
+                font-size: 12px;
+                color: #666;
+                line-height: 18px;
+                margin-bottom: 10px;
+            }
+            .posttitle{
+                display: block;
+                font-size: 18px;
+                color: #333;
+                line-height: 20px;
+                overflow: hidden;
+                margin-bottom: 10px;
+            }
+            .postinfo{
+                display: block;
+                font-size: 12px;
+                color: #999;
+                line-height: 18px;
+            }
+            sup{
+                display: block;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                padding: 2px 4px;
+                line-height: 12px;
+                font-size: 12px;
+                color: #3b2;
+                text-align: center;
+                background: #fff;
+                border: 1px solid #eee;
+                border-radius: 4px;
+            }
+            &:hover{
+                text-decoration: none;
+                background: #E9E9E9;
+            }
+        }
+    }
 }
