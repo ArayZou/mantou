@@ -19,7 +19,9 @@ module.exports = function(app) {
     // home
     app.get('/home', site.home);
     //me
-    app.get('/me', me);
+    app.get('/me', me.show);
+    app.get('/me/collect', me.col);
+    app.get('/me/pub', me.pub);
     //group
     app.get('/group/:groupname', group);
 
