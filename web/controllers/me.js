@@ -33,4 +33,20 @@ exports.pub = function(req, res) {
         data: []
     });
     //TODO end
-}
+};
+
+exports.setting = function(req, res) {
+    var type = req.params.type;
+    switch (type) {
+        case 'photo':
+            break;
+        case 'info':
+            break;
+        case 'psw':
+            break;
+    }
+    res.send({
+        success: true,
+        data: []
+    });
+};

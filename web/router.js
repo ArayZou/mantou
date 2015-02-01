@@ -22,6 +22,7 @@ module.exports = function(app) {
     app.get('/me', me.show);
     app.get('/me/collect', me.col);
     app.get('/me/pub', me.pub);
+    app.get('/me/setting/:type', me.setting);
     //group
     app.get('/group/:groupname', group);
 

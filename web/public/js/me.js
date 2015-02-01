@@ -28,10 +28,28 @@ require(['jquery', 'handlebars', 'bootstrap','../js/common'], function($, Handle
         $('#me-setting').click(function() {
             var tpl = Handlebars.compile($('#setting-panel-tpl').html());
             $('#me-page').append(tpl());
+            //TODO:unbind when remove panel
+            settingEvt();
         });
 
         $('#me-page').delegate('#close-setting', 'click', function() {
             $(this).closest('.panel').remove();
+        });
+    }, settingEvt = function() {
+        $('#setting-tabs').delegate('li', 'click', function() {
+            var tab, tpl;
+            $('#setting-tabs li').removeClass('active');
+            $(this).addClass('active');
+
+            if ($(this).hasClass('set-photo')) {
+                tab = 'photo';
+            } else if ($(this).hasClass('set-info')) {
+                tab = 'info';
+            } else if ($(this).hasClass('set-psw')) {
+                tab = 'psw';
+            }
+            tpl = Handlebars.compile($('#set-' + tab + '-tpl').html());
+            $('#setting-tab-content').html(tpl());//TODO:send in res to render tpl
         });
     };
     $(function() {
