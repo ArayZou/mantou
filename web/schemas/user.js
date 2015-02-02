@@ -56,7 +56,7 @@ userSchema.methods = {
 
 userSchema.statics = {
     findById: function(id, cbFn) {
-        return this.findOne({_id: id}).exec(cb);
+        return this.findOne({_id: id}).exec(cbFn);
     }
 };
 

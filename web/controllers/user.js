@@ -1,4 +1,5 @@
 var mongoose = require('mongoose'),
+    _ = require('underscore'),
     User;
 require('../models/user');
 User = mongoose.model('User');
@@ -60,4 +61,39 @@ exports.login = function(req, res) {
 exports.logout = function(req, res) {
     delete req.session.user;
     res.redirect('/');
+};
+
+//修改密码
+exports.repwd = function(req, res) {
+    var id = req.session.user._id;
+    if (id) {
+        User.findById(id, function(err, user) {
+            if (err) {
+                console.log(err);
+            }
+            if (user) {
+                user.pwdMatch(req.body.oldPwd, function(err, isMatch) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    if (isMatch) {
+                        user.save({password: req.body.newPwd}, function(err, _user) {
+                            if (err) {
+                                console.log(err);
+                            }
+                            req.session.user = _user;
+                            res.send({
+                                success: true,
+                            });
+                        });
+                    } else {
+                        res.send({
+                            success: false,
+                            err: '密码不正确'
+                        });
+                    }
+                });
+            }
+        });
+    }
 };
