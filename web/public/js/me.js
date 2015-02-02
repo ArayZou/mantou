@@ -30,6 +30,8 @@ require(['jquery', 'handlebars', 'bootstrap','../js/common'], function($, Handle
             $('#me-page').append(tpl());
             //TODO:unbind when remove panel
             settingEvt();
+
+            $('#setting-tabs li:first-child').click();
         });
 
         $('#me-page').delegate('#close-setting', 'click', function() {
