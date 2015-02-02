@@ -2,6 +2,7 @@ var site = require('./controllers/site'),
     user = require('./controllers/user'),
     me = require('./controllers/me'),
     group = require('./controllers/group'),
+    post = require('./controllers/post'),
     json = require('./controllers/json');
 
 module.exports = function(app) {
@@ -26,6 +27,8 @@ module.exports = function(app) {
     app.get('/me/setting/:type', me.setting);
     //group
     app.get('/group/:groupname', group);
+    //post
+    app.post('/post/write', post.write);
 
 
     // json
