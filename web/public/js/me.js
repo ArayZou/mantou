@@ -52,6 +52,21 @@ require(['jquery', 'handlebars', 'bootstrap','../js/common'], function($, Handle
             }
             tpl = Handlebars.compile($('#set-' + tab + '-tpl').html());
             $('#setting-tab-content').html(tpl());//TODO:send in res to render tpl
+        }).delegate('#repwd-button', 'click', function() {
+            $.ajax({
+                type: 'POST',
+                url: '/user/repwd',
+                data: {
+                    oldPwd: $('#old-pwd').val(),
+                    newPwd: $('#new-pwd').val()
+                }
+            }).then(function(data) {
+                if (data.success) {
+                    alert('success');
+                } else {
+                    alert(data.err);
+                }
+            });
         });
     };
     $(function() {

@@ -75,37 +75,35 @@
     something
 </script>
 <script type="text/x-handlebars" id="set-psw-tpl">
-    <form action="/user/repwd" method="POST" role="form">
-        <div class="form-horizontal">
-            <div class="form-group">
-                <label for="old-pwd" class="col-sm-2 controle-label">
-                    旧密码
-                </label>
-                <div class="col-sm-9">
-                    <input type="password" class="form-control" id="old-pwd" name="oldPwd">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="new-pwd" class="col-sm-2 controle-label">
-                    新密码
-                </label>
-                <div class="col-sm-9">
-                    <input type="password" class="form-control" id="new-pwd" name="newPwd">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="new-pwd-confirm" class="col-sm-2 controle-label">
-                    再次输入
-                </label>
-                <div class="col-sm-9">
-                    <input type="password" class="form-control" id="old-pwd-confirm">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">确定</button>
-                </div>
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label for="old-pwd" class="col-sm-2 controle-label">
+                旧密码
+            </label>
+            <div class="col-sm-9">
+                <input type="password" class="form-control" id="old-pwd">
             </div>
         </div>
-    </form>
+        <div class="form-group">
+            <label for="new-pwd" class="col-sm-2 controle-label">
+                新密码
+            </label>
+            <div class="col-sm-9">
+                <input type="password" class="form-control" id="new-pwd">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="new-pwd-confirm" class="col-sm-2 controle-label">
+                再次输入
+            </label>
+            <div class="col-sm-9">
+                <input type="password" class="form-control" id="old-pwd-confirm">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" id="repwd-button" class="btn btn-default">确定</button>
+            </div>
+        </div>
+    </div>
 </script>
