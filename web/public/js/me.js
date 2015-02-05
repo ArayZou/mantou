@@ -67,7 +67,24 @@ require(['jquery', 'handlebars', 'bootstrap','../js/common'], function($, Handle
                     alert(data.err);
                 }
             });
-        });
+        }).delegate('#info-button', 'click', function() {
+            $.ajax({
+                type: 'POST',
+                url: '/user/info',
+                data: {
+                    realName: $('#user-real-name').val(),
+                    weibo: $('#user-weibo').val(),
+                    qq: $('#user-qq').val(),
+                    sign: $('#user-sign').val()
+                }
+            }).then(function(data) {
+                if (data.success) {
+                    alert('success');
+                } else {
+                    alert(data.err);
+                }
+            })
+        });;
     };
     $(function() {
         initEvt();

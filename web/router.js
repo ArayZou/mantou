@@ -18,6 +18,7 @@ module.exports = function(app) {
     app.post('/user/login', user.login);
     app.post('/user/logout', user.logout);
     app.post('/user/repwd', user.repwd);
+    app.post('/user/info', user.info);
     // home
     app.get('/home', site.home);
     //me

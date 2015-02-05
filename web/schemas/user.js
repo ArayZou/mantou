@@ -9,6 +9,10 @@ userSchema = new mongoose.Schema({
         type: String
     },
     password: String,
+    realname: String,
+    weibo: String,
+    qq: String,
+    sign: String,
     meta: {
         createAt : {
             type: Date,
