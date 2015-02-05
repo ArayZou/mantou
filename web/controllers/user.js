@@ -77,7 +77,8 @@ exports.repwd = function(req, res) {
                         console.log(err);
                     }
                     if (isMatch) {
-                        user.save({password: req.body.newPwd}, function(err, _user) {
+                        user = _.extend(user, {password: req.body.newPwd});
+                        user.save(function(err, _user) {
                             if (err) {
                                 console.log(err);
                             }
@@ -92,6 +93,36 @@ exports.repwd = function(req, res) {
                             err: '密码不正确'
                         });
                     }
+                });
+            }
+        });
+    }
+};
+
+//基本信息
+exports.info = function(req, res) {
+    var id = req.session.user._id,
+        reqBody = req.body;
+    if (id) {
+        User.findById(id, function(err, user) {
+            if (err) {
+                console.log(err);
+            }
+            if (user) {
+                user = _.extend(user, {
+                    realname: reqBody.realName,
+                    weibo: reqBody.weibo,
+                    qq: reqBody.qq,
+                    sign: reqBody.sign
+                });
+                user.save(function(err, _user) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    req.session.user = _user;
+                    res.send({
+                        success: true
+                    });
                 });
             }
         });
