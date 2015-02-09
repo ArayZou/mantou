@@ -19,4 +19,4 @@ mantou
 * bootstrap
 
 #作者：
-<a href="https://arayzou.com">ArayZou</a> && <a href="https://github.com/loveLibra">徐祁</a>
+<a href="http://arayzou.com">ArayZou</a> && <a href="https://github.com/loveLibra">徐祁</a>
