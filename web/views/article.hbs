@@ -1,0 +1,16 @@
+<div class="webbody clearfix">
+    {{> menuBar }}
+    <div class="groupcontent" id="mt-container">
+        {{> groupMenu}}
+        <div class="groupbody">
+            <h1 class="home_title">{{article.title}}</h1>
+            <p>{{article.group.groupName}}</p>
+            {{#each article.floor}}
+                {{@index}}
+                <p>{{content}}</p>
+                <p>{{user.name}}</p>
+                <p>{{time}}</p>
+            {{/each}}
+        </div>
+    </div>
+</div>

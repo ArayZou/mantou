@@ -6,17 +6,22 @@ postSchema = new mongoose.Schema({
         unique: true,
         type: String
     },
-    content: String,
-    user: {
-        name : {
-            type: String
-        }
-    },
+    postId: Number,
+    floor:[{
+        content: String,
+        user: {
+            name : {
+                type: String
+            }
+        },
+        time: Date
+    }],
     group:{
         groupName : {
             type: String
         }
-    }
+    },
+    readtimes: Number
 });
 
 module.exports = postSchema;

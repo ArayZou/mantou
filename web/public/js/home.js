@@ -1,4 +1,4 @@
-require(['jquery','../js/common'], function($) {
+require(['jquery','/js/common.js'], function($) {
     $(function() {
 
     });

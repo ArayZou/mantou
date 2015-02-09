@@ -8,53 +8,59 @@
         <a class="searchbtn" href="javascript:;"><i class="glyphicon glyphicon-search"></i>搜索</a>
     </div>
     <ul class="group_postlist">
+        {{#each groupPost}}
         <li>
-            <a class="post_link" href="">
+            <a class="post_link" href="/group/{{../groupname}}/{{postId}}">
                 <img class="userimg" src="http://placehold.it/40x40/09f/fff" alt="">
-                <span class="username">发帖人昵称</span>
-                <span class="posttitle">贴子title</span>
-                <span class="postinfo">贴子快照</span>
+                {{#each floor}}
+                    {{#if @first}}<span class="username">{{user.name}}</span>{{/if}}
+                {{/each}}
+                <span class="posttitle">{{title}}</span>
+                {{#each floor}}
+                    {{#if @first}}<span class="postinfo">{{content}}</span>{{/if}}
+                {{/each}}
                 <sup>3</sup>
             </a>
         </li>
+        {{else}}
+        <li><span class="no_post">暂无文章哦</span></li>
+        {{/each }}
     </ul>
 </div>
 <div id="post-model" class="modal">
     <div class="modal-dialog">
-        <form action="../post/write" method="POST" role="form">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title">
-                       发帖
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label for="user-name-login" class="col-sm-2 control-label">标题</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="post_title" name="posttitle">
-                            </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                   发帖
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label for="user-name-login" class="col-sm-2 control-label">标题</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="post_title" name="posttitle">
                         </div>
-                        <div class="form-group">
-                            <label for="user-pwd-login" class="col-sm-2 control-label">内容</label>
-                            <div class="col-sm-9">
-                                <textarea class="form-control" rows="6" id="post_content" name="postcontent"></textarea>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-pwd-login" class="col-sm-2 control-label">内容</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" rows="6" id="post_content" name="postcontent"></textarea>
                         </div>
                     </div>
                 </div>
-                <input type="hidden" value="{{groupname}}" name="groupname">
-                <input type="hidden" value="{{user.name}}" name="username">
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">
-                        发布
-                    </button>
-                </div>
             </div>
-        </form>
+            <input type="hidden" value="{{groupname}}" name="groupname" id="group_name">
+            <input type="hidden" value="{{user.name}}" name="username" id="user_name">
+            <div class="modal-footer">
+                <button id="postsubmit" type="submit" class="btn btn-primary">
+                    发布
+                </button>
+            </div>
+        </div>
     </div>
 </div>

@@ -4,7 +4,10 @@ exports.show = function(req, res) {
     if (!req.session.user) {
         res.redirect('/');
     }
-    res.render('me', {title: 'me'});
+    res.render('me', {
+        js:[{js:'me'}],
+        title: 'me'
+    });
 };
 
 //get collections

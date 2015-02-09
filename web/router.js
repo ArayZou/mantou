@@ -3,6 +3,7 @@ var site = require('./controllers/site'),
     me = require('./controllers/me'),
     group = require('./controllers/group'),
     post = require('./controllers/post'),
+    article = require('./controllers/article'),
     json = require('./controllers/json');
 
 module.exports = function(app) {
@@ -28,6 +29,8 @@ module.exports = function(app) {
     app.get('/me/setting/:type', me.setting);
     //group
     app.get('/group/:groupname', group);
+    //article
+    app.get('/group/:groupname/:articleid', article);
     //post
     app.post('/post/write', post.write);
 

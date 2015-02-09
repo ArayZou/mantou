@@ -1,4 +1,4 @@
-require(['jquery', 'handlebars', 'bootstrap','../js/common'], function($, Handlebars, Bootstrap) {
+require(['jquery', 'handlebars', 'bootstrap','/js/common.js'], function($, Handlebars, Bootstrap) {
     var initEvt = function() {
 
         $('#nav-tabs').delegate('li', 'click', function() {
