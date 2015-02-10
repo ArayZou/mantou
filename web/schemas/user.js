@@ -10,6 +10,10 @@ userSchema = new mongoose.Schema({
     },
     password: String,
     realname: String,
+    followgroup: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'group'
+    }],
     weibo: String,
     qq: String,
     sign: String,

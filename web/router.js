@@ -4,6 +4,7 @@ var site = require('./controllers/site'),
     group = require('./controllers/group'),
     post = require('./controllers/post'),
     article = require('./controllers/article'),
+    myfollows = require('./controllers/myfollows'),
     json = require('./controllers/json');
 
 module.exports = function(app) {
@@ -20,6 +21,7 @@ module.exports = function(app) {
     app.post('/user/logout', user.logout);
     app.post('/user/repwd', user.repwd);
     app.post('/user/info', user.info);
+    app.post('/user/followgroup', user.followgroup);
     // home
     app.get('/home', site.home);
     //me
@@ -28,11 +30,14 @@ module.exports = function(app) {
     app.get('/me/pub', me.pub);
     app.get('/me/setting/:type', me.setting);
     //group
-    app.get('/group/:groupname', group);
+    app.get('/group/:groupname', group.grouphome);
+    app.post('/group/creatgroup', group.creatgroup);
     //article
     app.get('/group/:groupname/:articleid', article);
     //post
     app.post('/post/write', post.write);
+    //myfollows
+    app.get('/myfollows', myfollows);
 
 
     // json

@@ -30,6 +30,7 @@ a {
 }
 .groupcontent{
     float: left;
+    width: 100%;
     height: 100%;
     padding:0 0 0 340px;
 }
@@ -41,6 +42,7 @@ a {
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
+    background: #f2f2f2;
 }
 .home_title{
     margin:0 0 15px;
@@ -95,3 +97,78 @@ a {
     }
 }
 // blocklist end
+
+// mygrouplist
+.mygrouplist{
+    margin-right: -20px;
+    .groupblock{
+        float: left;
+        width: 244px;
+        height: 64px;
+        padding: 0 0 0 64px;
+        border-radius: 4px;
+        background: #fff;
+        margin:0 20px 20px 0;
+        img{
+            float: left;
+            margin-left: -64px;
+            border-radius: 4px 0 0 4px;
+        }
+        .title{
+            display: block;
+            padding: 10px 10px 0;
+            line-height: 24px;
+            font-size: 14px;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .intro{
+            display: block;
+            line-height: 20px;
+            font-size: 12px;
+            padding: 0 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            color: #999;
+        }
+        &:hover{
+            text-decoration: none;
+        }
+    }
+    .group_edit{
+        cursor: pointer;
+        float: left;
+        width: 244px;
+        height: 64px;
+        padding: 0 0 0 64px;
+        border-radius: 4px;
+        margin:0 20px 20px 0;
+        i{
+            float: left;
+            width: 64px;
+            height: 64px;
+            margin-left: -64px;
+            border-radius: 4px 0 0 4px;
+        }
+        .icon_findgroup{
+            background: url(/img/icon_findgroup.png) center no-repeat;
+        }
+        .icon_addgroup{
+            background: url(/img/icon_addgroup.png) center no-repeat;
+        }
+        .title{
+            font-size: 20px;
+            display: block;
+            width: 100%;
+            height: 64px;
+            line-height: 64px;
+            text-indent: 10px;
+            color: #333;
+        }
+        &:hover{
+            text-decoration: none;
+        }
+    }
+}
+// mygrouplist end

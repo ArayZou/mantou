@@ -26,6 +26,31 @@ require(['jquery','bootstrap','/js/common.js'], function($,bootstrap) {
                 }
             })
         });
+
+        $('body').on('click','#groupfollow_btn',function(){
+            var $this = $(this);
+            var groupName = $this.attr('data-groupname');
+            $.ajax({
+                url: 'http://localhost:3000/user/followgroup',
+                data: {
+                    groupName:groupName
+                },
+                type: 'POST',
+                success: function(data){
+                    if(data.success===1){
+                        $this.html('已关注');
+                    }else if(data.success === 2){
+                        $this.html('关注');
+                    }else{
+                        alert('关注失败')
+                    }
+                },
+                error: function(data){
+                    console.log(data)
+                    alert('关注失败')
+                }
+            });
+        });
     });
 });
 

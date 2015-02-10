@@ -1,22 +1,81 @@
 var mongoose = require('mongoose'),
-    Post;
+    Post,
+    Group;
 require('../models/post');
+require('../models/group');
 Post = mongoose.model('Post');
-module.exports = function(req, res) {
+Group = mongoose.model('Group');
+exports.grouphome = function(req, res) {
     var groupName = req.params.groupname;
     var groupPost = [];
-    Post.find({group:{groupName: groupName}}, function(err, post) {
+    Group.find(function(err, group) {
         if (err) {
             console.log(err);
         }
 
-        groupPost = post;
+        groupArray = group;
 
-        res.render('group', {
-            js:[{js:'group'}],
-            title: 'group-'+groupName,
-            groupname: groupName,
-            groupPost: groupPost
+        Group.find({name:groupName},function(err, thisgroup) {
+            if (err) {
+                console.log(err);
+            }
+            if (thisgroup.length>0){
+                Post.find({group:thisgroup[0]._id}, function(err, post) {
+                    if (err) {
+                        console.log(err);
+                    }
+
+                    groupPost = post;
+
+                    res.render('group', {
+                        js:[{js:'group'}],
+                        title: 'group-'+groupName,
+                        groupname: groupName,
+                        groupPost: groupPost,
+                        groupArray: groupArray
+                    });
+                });
+            }
         });
+    });
+}
+
+exports.creatgroup = function(req, res) {
+    var req_body = req.body;
+
+    Group.find({name: req_body.groupName}, function(err, group) {
+        if (err) {
+            console.log(err);
+        }
+
+        if (group.length > 0) {
+            res.send({
+                message:'1'
+            });
+        } else {
+            var groupTotal = 0;
+            Group.find(function(err,group){
+                if (err) {
+                    console.log(err);
+                }
+                groupTotal = group.length;
+
+                group = new Group({
+                    name: req_body.groupName,
+                    groupId: groupTotal + 1,
+                    hoster: req_body.groutHoster,
+                    intro: req_body.groupIntro
+                });
+
+                group.save(function(err, group) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    res.send({
+                        groupname:req_body.groupName
+                    });
+                });
+            });
+        }
     });
 }

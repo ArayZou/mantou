@@ -1,12 +1,25 @@
+var mongoose = require('mongoose'),
+    Group;
+require('../models/group');
+Group = mongoose.model('Group');
 //show page me
 exports.show = function(req, res) {
     var tpl;
     if (!req.session.user) {
         res.redirect('/');
     }
-    res.render('me', {
-        js:[{js:'me'}],
-        title: 'me'
+    Group.find(function(err, group) {
+        if (err) {
+            console.log(err);
+        }
+
+        groupArray = group;
+
+        res.render('me', {
+            js:[{js:'me'}],
+            title: 'me',
+            groupArray: groupArray
+        });
     });
 };
 

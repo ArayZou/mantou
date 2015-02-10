@@ -1,7 +1,10 @@
 var mongoose = require('mongoose'),
-    Post;
+    Post,
+    Group;
 require('../models/post');
+require('../models/group');
 Post = mongoose.model('Post');
+Group = mongoose.model('Group');
 //发帖
 exports.write = function(req, res) {
     var req_body = req.body;
@@ -33,20 +36,30 @@ exports.write = function(req, res) {
                             name:req_body.userName
                         },
                         time: postdate
-                    }],
-                    group:{
-                        groupName:req_body.groupName
-                    }
+                    }]
                 });
 
-                post.save(function(err, post) {
+                Group.find({name:req_body.groupName},function(err,groupdata){
                     if (err) {
                         console.log(err);
                     }
-                    res.send({
-                        groupname:req_body.groupName,
-                        postId:postTotal + 1
-                    });
+                    if(groupdata.length=1){
+                        post.group = groupdata[0]._id;
+
+                        post.save(function(err, post) {
+                            if (err) {
+                                console.log(err);
+                            }
+                            res.send({
+                                groupname:req_body.groupName,
+                                postId:postTotal + 1
+                            });
+                        });
+                    }else{
+                        res.send({
+                            message:'2'
+                        });
+                    }
                 });
             });
         }

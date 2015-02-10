@@ -16,10 +16,9 @@ postSchema = new mongoose.Schema({
         },
         time: Date
     }],
-    group:{
-        groupName : {
-            type: String
-        }
+    group: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'group'
     },
     readtimes: Number
 });

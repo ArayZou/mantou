@@ -1,8 +1,11 @@
 var mongoose = require('mongoose'),
     _ = require('underscore'),
-    User;
+    User,
+    Group;
 require('../models/user');
+require('../models/group');
 User = mongoose.model('User');
+Group = mongoose.model('Group');
 //注册
 exports.signup = function(req, res) {
     var req_body = req.body;
@@ -123,6 +126,56 @@ exports.info = function(req, res) {
                     res.send({
                         success: true
                     });
+                });
+            }
+        });
+    }
+};
+
+//关注群组
+exports.followgroup = function(req, res) {
+    var id = req.session.user._id,
+        reqBody = req.body;
+    if (id) {
+        User.findById(id, function(err, user) {
+            if (err) {
+                console.log(err);
+            }
+            if (user) {
+                Group.find({name:reqBody.groupName},function(err,group){
+                    if (err) {
+                        console.log(err);
+                    }
+                    var ifFollow = true;
+                    for(var i = 0;i<user.followgroup.length;i++){
+                        if(String(user.followgroup[i])==String(group[0]._id)){
+                            _.without(user.followgroup,String(group[0]._id));
+                            console.log(user.followgroup)
+                            user.save(function(err, _user) {
+                                if (err) {
+                                    console.log(err);
+                                }
+                                req.session.user = _user;
+                                res.send({
+                                    success: 2
+                                });
+                            });
+                            ifFollow = false;
+                            break;
+                        }
+                    }
+                    if(ifFollow){
+                        user.followgroup.push(group[0]._id);
+                        user.save(function(err, _user) {
+                            if (err) {
+                                console.log(err);
+                            }
+                            req.session.user = _user;
+                            res.send({
+                                success: 1
+                            });
+                        });
+                    }
                 });
             }
         });

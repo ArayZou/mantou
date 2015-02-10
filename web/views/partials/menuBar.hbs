@@ -25,24 +25,17 @@
                 <sup>5</sup>
             </a>
         </li>
+        {{#each groupArray}}
         <li>
-            <a href="/group/社区名称">
+            <a href="/group/{{name}}">
                 <span class="menuimg">
                     <img src="http://placehold.it/40x40/09f/fff">
                 </span>
-                <span class="menutext">社区名称</span>
+                <span class="menutext">{{name}}</span>
                 <sup>10</sup>
             </a>
         </li>
-        <li>
-            <a href="/group/社区名称1">
-                <span class="menuimg">
-                    <img src="http://placehold.it/40x40/09f/fff">
-                </span>
-                <span class="menutext">社区名称1</span>
-                <sup>10</sup>
-            </a>
-        </li>
+        {{/each }}
         <li>
             <a href="/find">
                 <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
@@ -51,7 +44,7 @@
             </a>
         </li>
         <li>
-            <a href="/morefollows">
+            <a href="/myfollows">
                 <i class="glyphicon glyphicon-th" aria-hidden="true"></i>
                 <span class="menutext">更多关注</span>
                 <sup>99</sup>

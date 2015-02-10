@@ -3,7 +3,8 @@
     <div class="groupcontent" id="mt-container">
         {{> groupMenu}}
         <div class="groupbody">
-            <h1 class="home_title">小组首页</h1>
+            <h1 class="home_title">{{groupname}}</h1>
+            <a id="groupfollow_btn" href="javascript:;" data-groupname="{{groupname}}">关注</a>
             {{> blockList }}
         </div>
     </div>
