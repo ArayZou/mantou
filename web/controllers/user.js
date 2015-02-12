@@ -27,6 +27,7 @@ exports.signup = function(req, res) {
                 if (err) {
                     console.log(err);
                 }
+                req.session.user = user;
                 res.redirect('/home');
             });
         }
@@ -136,6 +137,7 @@ exports.info = function(req, res) {
 exports.followgroup = function(req, res) {
     var id = req.session.user._id,
         reqBody = req.body;
+    var ifFollow = true;
     if (id) {
         User.findById(id, function(err, user) {
             if (err) {
@@ -146,38 +148,42 @@ exports.followgroup = function(req, res) {
                     if (err) {
                         console.log(err);
                     }
-                    var ifFollow = true;
-                    for(var i = 0;i<user.followgroup.length;i++){
-                        console.log()
-                        if(String(user.followgroup[i])==String(group[0]._id)){
-                            Array.remove(user.followgroup,i);
-                            User.where({ _id: id }).update({$set: { followgroup: user.followgroup }},function(err,_user){
-                                if (err) {
-                                    console.log(err);
-                                }
-                                req.session.user = _user;
-                                res.send({
-                                    success:2
+                    if(user.followgroup.length >0){
+                        for(var i = 0;i<user.followgroup.length;i++){
+                            if(String(user.followgroup[i].name)==String(group[0].name)){
+                                Array.remove(user.followgroup,i);
+                                User.where({ _id: id }).update({$set: { followgroup: user.followgroup }},function(err){
+                                    if (err) {
+                                        console.log(err);
+                                    }
+                                    req.session.user = user;
+                                    res.send({
+                                        success:2
+                                    });
                                 });
-                            });
-                            ifFollow = false;
-                            break;
+                                ifFollow = false;
+                                break;
+                            }
                         }
                     }
                     if(ifFollow){
-                        user.followgroup.push(group[0]._id);
-                        user.save(function(err, _user) {
+                        user.followgroup.push({name:group[0].name});
+                        User.where({ _id: id }).update({$set: { followgroup: user.followgroup }},function(err){
                             if (err) {
                                 console.log(err);
                             }
-                            req.session.user = _user;
+                            req.session.user = user;
                             res.send({
-                                success: 1
+                                success:1
                             });
                         });
                     }
                 });
             }
+        });
+    }else{
+        res.send({
+            error:1
         });
     }
 };

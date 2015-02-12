@@ -4,6 +4,7 @@ var site = require('./controllers/site'),
     group = require('./controllers/group'),
     post = require('./controllers/post'),
     article = require('./controllers/article'),
+    find = require('./controllers/find'),
     myfollows = require('./controllers/myfollows'),
     json = require('./controllers/json');
 
@@ -36,6 +37,9 @@ module.exports = function(app) {
     app.get('/group/:groupname/:articleid', article);
     //post
     app.post('/post/write', post.write);
+    //find
+    app.get('/findgroup', find.findgroup);
+    app.get('/findarticle', find.findarticle);
     //myfollows
     app.get('/myfollows', myfollows);
 

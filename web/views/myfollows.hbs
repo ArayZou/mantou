@@ -3,11 +3,13 @@
     <div class="mtcontent" id="mt-container">
         <h1 class="home_title">我关注的群组</h1>
         <div class="mygrouplist clearfix">
-            <a href="" class="groupblock">
+            {{#each user.followgroup}}
+            <a href="/group/{{name}}" class="groupblock">
                 <img src="http://placehold.it/64x64/09f/fff">
-                <span class="title">群组标题</span>
+                <span class="title">{{name}}</span>
                 <span class="intro">群组简介</span>
             </a>
+            {{/each }}
             <a href="/findgroup" class="group_edit">
                 <i class="icon_findgroup"></i>
                 <span class="title">关注新群组</span>

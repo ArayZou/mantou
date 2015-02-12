@@ -8,18 +8,10 @@ exports.show = function(req, res) {
     if (!req.session.user) {
         res.redirect('/');
     }
-    Group.find(function(err, group) {
-        if (err) {
-            console.log(err);
-        }
 
-        groupArray = group;
-
-        res.render('me', {
-            js:[{js:'me'}],
-            title: 'me',
-            groupArray: groupArray
-        });
+    res.render('me', {
+        js:[{js:'me'}],
+        title: 'me'
     });
 };
 

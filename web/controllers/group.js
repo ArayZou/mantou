@@ -1,4 +1,5 @@
 var mongoose = require('mongoose'),
+    _ = require('underscore'),
     Post,
     Group;
 require('../models/post');
@@ -7,36 +8,36 @@ Post = mongoose.model('Post');
 Group = mongoose.model('Group');
 exports.grouphome = function(req, res) {
     var groupName = req.params.groupname;
-    var groupPost = [];
-    Group.find(function(err, group) {
+    var postArray = [];
+    var person = req.session.user;
+    var ifUserFollow = false;
+    for(var i = 0;i<person.followgroup.length;i++){
+        if(person.followgroup[i].name == groupName){
+            ifUserFollow = true;
+            break;
+        }
+    }
+    Group.find({name:groupName},function(err, thisgroup) {
         if (err) {
             console.log(err);
         }
+        if (thisgroup.length>0){
+            Post.find({group:thisgroup[0]._id}, function(err, post) {
+                if (err) {
+                    console.log(err);
+                }
 
-        groupArray = group;
+                postArray = post;
 
-        Group.find({name:groupName},function(err, thisgroup) {
-            if (err) {
-                console.log(err);
-            }
-            if (thisgroup.length>0){
-                Post.find({group:thisgroup[0]._id}, function(err, post) {
-                    if (err) {
-                        console.log(err);
-                    }
-
-                    groupPost = post;
-
-                    res.render('group', {
-                        js:[{js:'group'}],
-                        title: 'group-'+groupName,
-                        groupname: groupName,
-                        groupPost: groupPost,
-                        groupArray: groupArray
-                    });
+                res.render('group', {
+                    js:[{js:'group'}],
+                    title: 'group-'+groupName,
+                    groupname: groupName,
+                    postArray: postArray,
+                    ifUserFollow:ifUserFollow
                 });
-            }
-        });
+            });
+        }
     });
 }
 

@@ -4,7 +4,7 @@
         {{> groupMenu}}
         <div class="groupbody">
             <h1 class="home_title">{{groupname}}</h1>
-            <a id="groupfollow_btn" href="javascript:;" data-groupname="{{groupname}}">关注</a>
+            <a id="groupfollow_btn" href="javascript:;" data-groupname="{{groupname}}">{{#if ifUserFollow}}已关注{{else}}关注{{/if}}</a>
             {{> blockList }}
         </div>
     </div>

@@ -39,8 +39,10 @@ require(['jquery','bootstrap','/js/common.js'], function($,bootstrap) {
                 success: function(data){
                     if(data.success===1){
                         $this.html('已关注');
+                        window.location.href = window.location.href;
                     }else if(data.success === 2){
                         $this.html('关注');
+                        window.location.href = window.location.href;
                     }else{
                         alert('关注失败')
                     }

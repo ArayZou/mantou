@@ -1,0 +1,16 @@
+<div class="webbody clearfix">
+    {{> menuBar }}
+    <div class="mtcontent" id="mt-container">
+        <h1 class="home_title">推荐群组</h1>
+        <a href="/findarticle">推荐文章</a>
+        <div class="mygrouplist clearfix">
+            {{#each groupArray}}
+            <a href="/group/{{name}}" class="groupblock">
+                <img src="http://placehold.it/64x64/09f/fff">
+                <span class="title">{{name}}</span>
+                <span class="intro">{{intro}}</span>
+            </a>
+            {{/each }}
+        </div>
+    </div>
+</div>
