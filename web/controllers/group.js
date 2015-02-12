@@ -1,9 +1,12 @@
 var mongoose = require('mongoose'),
     _ = require('underscore'),
     Post,
-    Group;
+    Group,
+    User;
+require('../models/user');
 require('../models/post');
 require('../models/group');
+User = mongoose.model('User');
 Post = mongoose.model('Post');
 Group = mongoose.model('Group');
 exports.grouphome = function(req, res) {
@@ -11,6 +14,7 @@ exports.grouphome = function(req, res) {
     var postArray = [];
     var person = req.session.user;
     var ifUserFollow = false;
+    var ifHoster = false;
     for(var i = 0;i<person.followgroup.length;i++){
         if(person.followgroup[i].name == groupName){
             ifUserFollow = true;
@@ -22,6 +26,9 @@ exports.grouphome = function(req, res) {
             console.log(err);
         }
         if (thisgroup.length>0){
+            if(thisgroup[0].hoster == person._id){
+                ifHoster = true;
+            }
             Post.find({group:thisgroup[0]._id}, function(err, post) {
                 if (err) {
                     console.log(err);
@@ -34,7 +41,8 @@ exports.grouphome = function(req, res) {
                     title: 'group-'+groupName,
                     groupname: groupName,
                     postArray: postArray,
-                    ifUserFollow:ifUserFollow
+                    ifUserFollow:ifUserFollow,
+                    ifHoster:ifHoster
                 });
             });
         }
@@ -42,41 +50,60 @@ exports.grouphome = function(req, res) {
 }
 
 exports.creatgroup = function(req, res) {
-    var req_body = req.body;
+    var id = req.session.user._id,
+        req_body = req.body;
+    if (id) {
+        User.findById(id, function(err, user) {
+            if (err) {
+                console.log(err);
+            }
+            if (user) {
 
-    Group.find({name: req_body.groupName}, function(err, group) {
-        if (err) {
-            console.log(err);
-        }
-
-        if (group.length > 0) {
-            res.send({
-                message:'1'
-            });
-        } else {
-            var groupTotal = 0;
-            Group.find(function(err,group){
-                if (err) {
-                    console.log(err);
-                }
-                groupTotal = group.length;
-
-                group = new Group({
-                    name: req_body.groupName,
-                    groupId: groupTotal + 1,
-                    hoster: req.session.user._id,
-                    intro: req_body.groupIntro
-                });
-
-                group.save(function(err, group) {
+                Group.find({name: req_body.groupName}, function(err, group) {
                     if (err) {
                         console.log(err);
                     }
-                    res.send({
-                        groupname:req_body.groupName
-                    });
+
+                    if (group.length > 0) {
+                        res.send({
+                            message:'1'
+                        });
+                    } else {
+                        var groupTotal = 0;
+                        Group.find(function(err,group){
+                            if (err) {
+                                console.log(err);
+                            }
+                            groupTotal = group.length;
+
+                            group = new Group({
+                                name: req_body.groupName,
+                                groupId: groupTotal + 1,
+                                hoster: req.session.user._id,
+                                intro: req_body.groupIntro
+                            });
+
+                            group.save(function(err, group) {
+                                if (err) {
+                                    console.log(err);
+                                }
+
+                                user.followgroup.push({name:req_body.groupName});
+                                User.where({ _id: id }).update({$set: { followgroup: user.followgroup }},function(err){
+                                    if (err) {
+                                        console.log(err);
+                                    }
+                                    req.session.user = user;
+
+                                    res.send({
+                                        groupname:req_body.groupName
+                                    });
+                                });
+                            });
+                        });
+                    }
                 });
-            });
-        }
-    });
+            }
+        });
+    }
 }

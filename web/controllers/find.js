@@ -15,7 +15,7 @@ exports.findgroup = function(req, res) {
         var groupArray = group;
 
         res.render('findgroup', {
-            js:[{js:'group'}],
+            js:[{js:'myfollows'}],
             title: 'findgroup',
             groupArray: groupArray,
         });
@@ -34,7 +34,7 @@ exports.findarticle = function(req, res) {
         postArray = post;
 
         res.render('findarticle', {
-            js:[{js:'group'}],
+            js:[{js:'myfollows'}],
             title: 'findarticle',
             postArray: postArray,
         });
