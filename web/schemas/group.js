@@ -8,10 +8,8 @@ groupSchema = new mongoose.Schema({
     },
     groupId: Number,
     hoster:{
-        name: {
-            unique: true,
-            type: String
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
     },
     intro: String,
     link: String,

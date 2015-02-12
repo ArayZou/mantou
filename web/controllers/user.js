@@ -148,16 +148,16 @@ exports.followgroup = function(req, res) {
                     }
                     var ifFollow = true;
                     for(var i = 0;i<user.followgroup.length;i++){
+                        console.log()
                         if(String(user.followgroup[i])==String(group[0]._id)){
-                            _.without(user.followgroup,String(group[0]._id));
-                            console.log(user.followgroup)
-                            user.save(function(err, _user) {
+                            Array.remove(user.followgroup,i);
+                            User.where({ _id: id }).update({$set: { followgroup: user.followgroup }},function(err,_user){
                                 if (err) {
                                     console.log(err);
                                 }
                                 req.session.user = _user;
                                 res.send({
-                                    success: 2
+                                    success:2
                                 });
                             });
                             ifFollow = false;
@@ -180,4 +180,11 @@ exports.followgroup = function(req, res) {
             }
         });
     }
+};
+
+
+Array.remove = function(array, from, to) {
+    var rest = array.slice((to || from) + 1 || array.length);
+    array.length = from < 0 ? array.length + from : from;
+    return array.push.apply(array, rest);
 };

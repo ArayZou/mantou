@@ -63,7 +63,7 @@ exports.creatgroup = function(req, res) {
                 group = new Group({
                     name: req_body.groupName,
                     groupId: groupTotal + 1,
-                    hoster: req_body.groutHoster,
+                    hoster: req.session.user._id,
                     intro: req_body.groupIntro
                 });
 

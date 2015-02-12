@@ -8,7 +8,6 @@ require(['jquery','bootstrap','/js/common.js'], function($,bootstrap) {
                 url: 'http://localhost:3000/group/creatgroup',
                 data: {
                     groupName:groupName,
-                    groutHoster:groutHoster,
                     groupIntro:groupIntro
                 },
                 type: 'POST',
