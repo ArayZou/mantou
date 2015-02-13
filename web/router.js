@@ -32,7 +32,9 @@ module.exports = function(app) {
     app.get('/me/setting/:type', me.setting);
     //group
     app.get('/group/:groupname', group.grouphome);
+    app.get('/group/:groupname/manage', group.groupmanage);
     app.post('/group/creatgroup', group.creatgroup);
+    app.post('/group/editgroupintro', group.editgroupintro);
     //article
     app.get('/group/:groupname/:articleid', article);
     //post

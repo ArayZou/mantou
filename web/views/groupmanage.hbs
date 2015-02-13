@@ -1,10 +1,61 @@
 <div class="webbody clearfix">
     {{> menuBar }}
-    <div class="groupcontent" id="mt-container">
-        {{> groupMenu}}
-        <div class="groupbody">
-            <h1 class="home_title">{{groupname}}-设置</h1>
-
+    <div class="mtcontent" id="mt-container">
+        <h1 class="home_title"><a href="/group/{{thisGroup.name}}">{{thisGroup.name}}</a>-设置</h1>
+        <div role="tabpanel" class="groupmanage_formtab">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#groupintro" aria-controls="groupintro" role="tab" data-toggle="tab">资料</a></li>
+                <li role="presentation"><a href="#groupicon" aria-controls="groupicon" role="tab" data-toggle="tab">图标</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="groupintro">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="group_name" class="col-sm-2 control-label">名称</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="group_name" disabled="disabled" value="{{thisGroup.name}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="group_hoster" class="col-sm-2 control-label">组长</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="group_hoster" disabled="disabled" value="{{user.name}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="group_intro" class="col-sm-2 control-label" for="">简介</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" rows="6" id="group_intro">{{thisGroup.intro}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="group_link" class="col-sm-2 control-label">官方地址</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="group_link" value="{{thisGroup.link}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="group_weixin" class="col-sm-2 control-label">微信号</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="group_weixin" value="{{thisGroup.weixin}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="group_weibo" class="col-sm-2 control-label" for="">微博地址</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="group_weibo" value="{{thisGroup.weibo}}">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="submit_groupinto" type="submit" class="btn btn-default">保存</button>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="groupicon">
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,5 +1,6 @@
 require(['jquery','bootstrap','/js/common.js'], function($,bootstrap) {
     $(function() {
+        //发文章
         $('body').on('click','#postsubmit',function(){
             var postTitle = $('#post_title').val(),
                 postContent = $('#post_content').val(),
@@ -26,7 +27,7 @@ require(['jquery','bootstrap','/js/common.js'], function($,bootstrap) {
                 }
             })
         });
-
+        //关注群组
         $('body').on('click','#groupfollow_btn',function(){
             var $this = $(this);
             var groupName = $this.attr('data-groupname');
@@ -50,6 +51,38 @@ require(['jquery','bootstrap','/js/common.js'], function($,bootstrap) {
                 error: function(data){
                     console.log(data)
                     alert('关注失败')
+                }
+            });
+        });
+        //修改群组基本资料
+        $('body').on('click','#submit_groupinto',function(){
+            var $this = $(this);
+            var groupName = $('#group_name').val(),
+                groupIntro = $('#group_intro').val(),
+                groupLink = $('#group_link').val(),
+                groupWeixin = $('#group_weixin').val(),
+                groupWeibo = $('#group_weibo').val();
+            $.ajax({
+                url: 'http://localhost:3000/group/editgroupintro',
+                data: {
+                    groupName:groupName,
+                    groupIntro:groupIntro,
+                    groupLink:groupLink,
+                    groupWeixin:groupWeixin,
+                    groupWeibo:groupWeibo
+                },
+                type: 'POST',
+                success: function(data){
+                    if(data.success===1){
+                        alert('保存成功');
+                        window.location.href = window.location.href;
+                    }else{
+                        alert('保存失败');
+                    }
+                },
+                error: function(data){
+                    console.log(data)
+                    alert('保存失败');
                 }
             });
         });
