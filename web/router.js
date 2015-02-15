@@ -6,6 +6,7 @@ var site = require('./controllers/site'),
     article = require('./controllers/article'),
     find = require('./controllers/find'),
     myfollows = require('./controllers/myfollows'),
+    auth = require('./middlewares/auth'),
     json = require('./controllers/json');
 
 module.exports = function(app) {
@@ -24,26 +25,26 @@ module.exports = function(app) {
     app.post('/user/info', user.info);
     app.post('/user/followgroup', user.followgroup);
     // home
-    app.get('/home', site.home);
+    app.get('/home', auth, site.home);
     //me
-    app.get('/me', me.show);
-    app.get('/me/collect', me.col);
-    app.get('/me/pub', me.pub);
-    app.get('/me/setting/:type', me.setting);
+    app.get('/me', auth,  me.show);
+    app.get('/me/collect', auth,  me.col);
+    app.get('/me/pub', auth,  me.pub);
+    app.get('/me/setting/:type', auth,  me.setting);
     //group
-    app.get('/group/:groupname', group.grouphome);
-    app.get('/group/:groupname/manage', group.groupmanage);
+    app.get('/group/:groupname', auth,  group.grouphome);
+    app.get('/group/:groupname/manage', auth,  group.groupmanage);
     app.post('/group/creatgroup', group.creatgroup);
     app.post('/group/editgroupintro', group.editgroupintro);
     //article
-    app.get('/group/:groupname/:articleid', article);
+    app.get('/group/:groupname/:articleid', auth,  article);
     //post
     app.post('/post/write', post.write);
     //find
-    app.get('/findgroup', find.findgroup);
-    app.get('/findarticle', find.findarticle);
+    app.get('/findgroup', auth,  find.findgroup);
+    app.get('/findarticle', auth,  find.findarticle);
     //myfollows
-    app.get('/myfollows', myfollows);
+    app.get('/myfollows', auth,  myfollows);
 
 
     // json
