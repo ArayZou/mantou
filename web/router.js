@@ -37,7 +37,7 @@ module.exports = function(app) {
     app.post('/group/creatgroup', group.creatgroup);
     app.post('/group/editgroupintro', group.editgroupintro);
     //article
-    app.get('/group/:groupname/:articleid', auth,  article);
+    app.get('/group/:groupname/:articleid', auth, article);
     //post
     app.post('/post/write', post.write);
     //find
@@ -46,7 +46,6 @@ module.exports = function(app) {
     //myfollows
     app.get('/myfollows', auth,  myfollows);
 
-
     // json
-    app.get('/json/:jsonfunc', json.index);
+    app.use('/json/uploadimg',json.uploadimg);
 };

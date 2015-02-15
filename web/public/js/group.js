@@ -1,4 +1,4 @@
-require(['jquery','bootstrap','/js/common.js'], function($,bootstrap) {
+require(['jquery','bootstrap','/js/jquery.ui.widget.js','/js/jquery.iframe-transport.js','/js/jquery.fileupload.js','/js/common.js'], function($,bootstrap) {
     $(function() {
         //发文章
         $('body').on('click','#postsubmit',function(){
@@ -85,6 +85,16 @@ require(['jquery','bootstrap','/js/common.js'], function($,bootstrap) {
                     alert('保存失败');
                 }
             });
+        });
+
+        //上传图片
+        $('#fileupload').fileupload({
+            url: 'http://localhost:3000/json/uploadimg',
+            type: 'POST',
+            dataType: 'json',
+            done: function(data){
+                console.log(data)
+            }
         });
     });
 });

@@ -5,12 +5,12 @@
         <div role="tabpanel" class="groupmanage_formtab">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#groupintro" aria-controls="groupintro" role="tab" data-toggle="tab">资料</a></li>
-                <li role="presentation"><a href="#groupicon" aria-controls="groupicon" role="tab" data-toggle="tab">图标</a></li>
+                <li role="presentation"><a href="#groupintro" aria-controls="groupintro" role="tab" data-toggle="tab">资料</a></li>
+                <li role="presentation" class="active"><a href="#groupicon" aria-controls="groupicon" role="tab" data-toggle="tab">图标</a></li>
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="groupintro">
+                <div role="tabpanel" class="tab-pane" id="groupintro">
                     <div class="form-horizontal">
                         <div class="form-group">
                             <label for="group_name" class="col-sm-2 control-label">名称</label>
@@ -53,7 +53,9 @@
                         </div>
                     </div>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="groupicon">
+                <div role="tabpanel" class="tab-pane active" id="groupicon">
+                    <input id="fileupload" type="file" multiple>
+                    <img id="ab" src="/uploads/1.jpg">
                 </div>
             </div>
         </div>

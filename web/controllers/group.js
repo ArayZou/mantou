@@ -63,7 +63,9 @@ exports.groupmanage = function(req, res){
                 ifHoster = true;
 
                 res.render('groupmanage', {
-                    js:[{js:'group'}],
+                    js:[
+                        {js:'group'}
+                    ],
                     title: 'group-'+groupName+'管理',
                     thisGroup: thisgroup[0]
                 });
