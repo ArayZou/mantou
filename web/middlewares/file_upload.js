@@ -83,7 +83,7 @@ module.exports = function(opts) {
       // AWS Random UUID
       /* https://gist.github.com/jed/982883#file-index-js */
     function b(a) {
-    return a ? (a ^ Math.random() * 16 >> a / 4).toString(16) : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, b)
+        return a ? (a ^ Math.random() * 16 >> a / 4).toString(16) : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, b)
     }
 
 
@@ -150,13 +150,27 @@ module.exports = function(opts) {
         this.deleteType = 'DELETE';
     };
 
+    //生成随机数
+    function randomString(length, chars) {
+        var mask = '';
+        if (chars.indexOf('a') > -1) mask += 'abcdefghijklmnopqrstuvwxyz';
+        if (chars.indexOf('A') > -1) mask += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        if (chars.indexOf('#') > -1) mask += '0123456789';
+        if (chars.indexOf('!') > -1) mask += '~`!@#$%^&*()_+-={}[]:";\'<>?,./|\\';
+        var result = '';
+        for (var i = length; i > 0; --i) result += mask[Math.round(Math.random() * (mask.length - 1))];
+        return result;
+    }
+
     FileInfo.prototype.safeName = function() {
         // Prevent directory traversal and creating hidden system files:
         this.name = path.basename(this.name).replace(/^\.+/, '');
         // Prevent overwriting existing files:
-        while (_existsSync(options.uploadDir + '/' + this.name)) {
-            this.name = this.name.replace(nameCountRegexp, nameCountFunc);
-        }
+        // while (_existsSync(options.uploadDir + '/' + this.name)) {
+        //     this.name = this.name.replace(nameCountRegexp, nameCountFunc);
+        // }
+        var FileExt=this.name.replace(/.+\./,"");
+        this.name = randomString(16, '#aA') + '.' + FileExt;
     };
 
     FileInfo.prototype.initUrls = function(req, sss) {
@@ -226,35 +240,36 @@ module.exports = function(opts) {
                     files: files
                 });
             });
-        } else if (options.storage.type == 'aws') {
-            var params = {
-                Bucket: options.storage.aws.bucketName, // required
-                //Delimiter: 'STRING_VALUE',
-                //EncodingType: 'url',
-                //Marker: 'STRING_VALUE',
-                //MaxKeys: 0,
-                //Prefix: 'STRING_VALUE',
-            };
-            s3.listObjects(params, function(err, data) {
-                if (err) console.log(err, err.stack); // an error occurred
-                //else     console.log(data);           // successful response
-
-                data.Contents.forEach(function(o) {
-                    fileInfo = new FileInfo({
-                        name: options.UUIDRegex.test(o.Key) ? o.Key.split('__')[1] : o.Key,
-                        size: o.Size
-                    });
-                    sss = {
-                        url: (options.useSSL ? 'https:' : 'http:') + '//s3.amazonaws.com/' + options.storage.aws.bucketName + '/' + o.Key
-                    }
-                    fileInfo.initUrls(req, sss);
-                    files.push(fileInfo);
-                });
-                callback({
-                    files: files
-                });
-            });
         }
+        // else if (options.storage.type == 'aws') {
+        //     var params = {
+        //         Bucket: options.storage.aws.bucketName, // required
+        //         //Delimiter: 'STRING_VALUE',
+        //         //EncodingType: 'url',
+        //         //Marker: 'STRING_VALUE',
+        //         //MaxKeys: 0,
+        //         //Prefix: 'STRING_VALUE',
+        //     };
+        //     s3.listObjects(params, function(err, data) {
+        //         if (err) console.log(err, err.stack); // an error occurred
+        //         //else     console.log(data);           // successful response
+
+        //         data.Contents.forEach(function(o) {
+        //             fileInfo = new FileInfo({
+        //                 name: options.UUIDRegex.test(o.Key) ? o.Key.split('__')[1] : o.Key,
+        //                 size: o.Size
+        //             });
+        //             sss = {
+        //                 url: (options.useSSL ? 'https:' : 'http:') + '//s3.amazonaws.com/' + options.storage.aws.bucketName + '/' + o.Key
+        //             }
+        //             fileInfo.initUrls(req, sss);
+        //             files.push(fileInfo);
+        //         });
+        //         callback({
+        //             files: files
+        //         });
+        //     });
+        // }
     };
 
 
@@ -326,11 +341,12 @@ module.exports = function(opts) {
         //     };
         //   });
         // }
-            } else if (options.storage.type == 'aws') {
-                uploadFile((b() + '__' + fileInfo.name), file.path, function(sss, error) {
-                    finish(sss, error);
-                });
             }
+            // else if (options.storage.type == 'aws') {
+            //     uploadFile((b() + '__' + fileInfo.name), file.path, function(sss, error) {
+            //         finish(sss, error);
+            //     });
+            // }
         }).on('aborted', function() {
             tmpFiles.forEach(function(file) {
             fs.unlink(file);
@@ -371,20 +387,21 @@ module.exports = function(opts) {
             callback({
                 success: false
             });
-        } else if (options.storage.type == 'aws') {
-            var params = {
-                Bucket: options.storage.aws.bucketName, // required
-                Key: decodeURIComponent(req.url.split('/')[req.url.split('/').length - 1]) // required
-            };
-            console.log(params);
-            s3.deleteObject(params, function(err, data) {
-                if (err) console.log(err, err.stack); // an error occurred
-                else console.log(data); // successful response
-                callback({
-                    success: data
-                });
-            });
         }
+        // else if (options.storage.type == 'aws') {
+        //     var params = {
+        //         Bucket: options.storage.aws.bucketName, // required
+        //         Key: decodeURIComponent(req.url.split('/')[req.url.split('/').length - 1]) // required
+        //     };
+        //     console.log(params);
+        //     s3.deleteObject(params, function(err, data) {
+        //         if (err) console.log(err, err.stack); // an error occurred
+        //         else console.log(data); // successful response
+        //         callback({
+        //             success: data
+        //         });
+        //     });
+        // }
     };
 
     return fileUploader;

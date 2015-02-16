@@ -48,4 +48,5 @@ module.exports = function(app) {
 
     // json
     app.use('/json/uploadimg',json.uploadimg);
+    app.post('/json/savebase64img',json.savebase64img);
 };

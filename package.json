@@ -24,6 +24,7 @@
     "express": "~4.11.0",
     "express-session": "^1.10.1",
     "formidable": "^1.0.17",
+    "gm": "^1.17.0",
     "gulp": "^3.8.10",
     "gulp-concat": "^2.4.3",
     "gulp-develop-server": "^0.2.5",

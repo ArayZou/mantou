@@ -64,7 +64,7 @@ exports.groupmanage = function(req, res){
 
                 res.render('groupmanage', {
                     js:[
-                        {js:'group'}
+                        {js:'groupmanage'}
                     ],
                     title: 'group-'+groupName+'管理',
                     thisGroup: thisgroup[0]
