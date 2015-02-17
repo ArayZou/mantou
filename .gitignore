@@ -166,9 +166,9 @@ $RECYCLE.BIN/
 /web/public/uploads/*.jpg
 /web/public/uploads/*.png
 /web/public/uploads/*.gif
-/web/public/group/*.jpg
-/web/public/group/*.png
-/web/public/group/*.gif
-/web/public/user/*.jpg
-/web/public/user/*.png
-/web/public/user/*.gif
+/web/public/uploads/group/*.jpg
+/web/public/uploads/group/*.png
+/web/public/uploads/group/*.gif
+/web/public/uploads/user/*.jpg
+/web/public/uploads/user/*.png
+/web/public/uploads/user/*.gif
