@@ -54,9 +54,22 @@ exports.login = function(req, res) {
 
             if (isMatch) {
                 req.session.user = user;
-                console.log(req.session)
+                // 关注群组缓存
+                req.session.group = [];
+
+                var followgroupId = [];
+                for(var i = 0;i<req.session.user.followgroup.length;i++){
+                    followgroupId.push(req.session.user.followgroup[i]);
+                }
+                Group.find({_id:{$in:followgroupId}},function(err,group){
+                    if(err){
+                        console.log(err)
+                    }
+                    req.session.group = group;
+                    return res.redirect('/home');
+                })
+
             }
-            return res.redirect('/home');
         });
     });
 };
@@ -64,6 +77,7 @@ exports.login = function(req, res) {
 //登出
 exports.logout = function(req, res) {
     delete req.session.user;
+    req.session.group = [];
     res.redirect('/');
 };
 
@@ -150,16 +164,29 @@ exports.followgroup = function(req, res) {
                     }
                     if(user.followgroup.length >0){
                         for(var i = 0;i<user.followgroup.length;i++){
-                            if(String(user.followgroup[i].name)==String(group[0].name)){
+                            if(String(user.followgroup[i])==String(group[0]._id)){
                                 Array.remove(user.followgroup,i);
                                 User.where({ _id: id }).update({$set: { followgroup: user.followgroup }},function(err){
                                     if (err) {
                                         console.log(err);
                                     }
                                     req.session.user = user;
-                                    res.send({
-                                        success:2
-                                    });
+                                    // 关注群组缓存
+                                    req.session.group = [];
+
+                                    var followgroupId = [];
+                                    for(var i = 0;i<req.session.user.followgroup.length;i++){
+                                        followgroupId.push(req.session.user.followgroup[i]);
+                                    }
+                                    Group.find({_id:{$in:followgroupId}},function(err,group){
+                                        if(err){
+                                            console.log(err)
+                                        }
+                                        req.session.group = group;
+                                        res.send({
+                                            success:2
+                                        });
+                                    })
                                 });
                                 ifFollow = false;
                                 break;
@@ -167,15 +194,28 @@ exports.followgroup = function(req, res) {
                         }
                     }
                     if(ifFollow){
-                        user.followgroup.push({name:group[0].name});
+                        user.followgroup.push(group[0]._id);
                         User.where({ _id: id }).update({$set: { followgroup: user.followgroup }},function(err){
                             if (err) {
                                 console.log(err);
                             }
                             req.session.user = user;
-                            res.send({
-                                success:1
-                            });
+                            // 关注群组缓存
+                            req.session.group = [];
+
+                            var followgroupId = [];
+                            for(var i = 0;i<req.session.user.followgroup.length;i++){
+                                followgroupId.push(req.session.user.followgroup[i]);
+                            }
+                            Group.find({_id:{$in:followgroupId}},function(err,group){
+                                if(err){
+                                    console.log(err)
+                                }
+                                req.session.group = group;
+                                res.send({
+                                    success:1
+                                });
+                            })
                         });
                     }
                 });
@@ -187,6 +227,48 @@ exports.followgroup = function(req, res) {
         });
     }
 };
+
+// 保存用户头像接口
+var fs = require('fs'),
+    gm = require('gm'),
+    imageMagick = gm.subClass({ imageMagick : true });
+exports.saveuserimg = function(req, res){
+    var id = req.session.user._id,
+        req_body = req.body;
+    if (id) {
+        User.findById(id, function(err, user) {
+            if (err) {
+                console.log(err);
+            }
+            if (user) {
+                //判断目录是否存在，不存在新建
+                if(!fs.existsSync('web/public/uploads/user')){
+                    fs.mkdirSync('web/public/uploads/user');
+                }
+                var imgSrc = req_body.imgSrc;
+                imageMagick(imgSrc)
+                    .crop(req_body.imgWidth, req_body.imgHeight, req_body.imgX, req_body.imgY)
+                    .resize(150, 150, '!') //加('!')强行把图片缩放成对应尺寸100*100！
+                    .write('web/public/uploads/user/'+user._id+'.jpg', function(err){
+                        if (err) {
+                            console.log(err);
+                            res.end();
+                        }
+                        user.img = '/uploads/user/'+user._id+'.jpg';
+                        user.save(function(err, user) {
+                            if (err) {
+                                console.log(err);
+                            }
+                            req.session.user = user;
+                            res.send({
+                                success:1
+                            });
+                        });
+                    });
+            }
+        });
+    }
+}
 
 
 Array.remove = function(array, from, to) {

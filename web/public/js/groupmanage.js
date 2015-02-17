@@ -78,6 +78,7 @@ function(
             $.ajax({
                 url: 'http://localhost:3000/group/savegroupimg',
                 data: {
+                    groupName: $('#group_name').val(),
                     imgSrc:imgSrc,
                     imgX:imgData.x,
                     imgY:imgData.y,
@@ -86,7 +87,14 @@ function(
                 },
                 type: 'POST',
                 success:function(data){
-                    console.log(data)
+                    if(data.success==1){
+                        window.location.href = window.location.href;
+                    }else{
+                        alert('保存失败');
+                    }
+                },
+                error: function(data){
+                    alert('保存失败')
                 }
             });
         });

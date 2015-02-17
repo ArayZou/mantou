@@ -16,12 +16,6 @@ exports.grouphome = function(req, res) {
     var person = req.session.user;
     var ifUserFollow = false;
     var ifHoster = false;
-    for(var i = 0;i<person.followgroup.length;i++){
-        if(person.followgroup[i].name == groupName){
-            ifUserFollow = true;
-            break;
-        }
-    }
     Group.find({name:groupName},function(err, thisgroup) {
         if (err) {
             console.log(err);
@@ -29,6 +23,12 @@ exports.grouphome = function(req, res) {
         if (thisgroup.length>0){
             if(thisgroup[0].hoster == person._id){
                 ifHoster = true;
+            }
+            for(var i = 0;i<person.followgroup.length;i++){
+                if(person.followgroup[i] == thisgroup[0]._id){
+                    ifUserFollow = true;
+                    break;
+                }
             }
             Post.find({group:thisgroup[0]._id}, function(err, post) {
                 if (err) {
@@ -115,16 +115,29 @@ exports.creatgroup = function(req, res) {
                                     console.log(err);
                                 }
 
-                                user.followgroup.push({name:req_body.groupName});
+                                user.followgroup.push(group._id);
                                 User.where({ _id: id }).update({$set: { followgroup: user.followgroup }},function(err){
                                     if (err) {
                                         console.log(err);
                                     }
                                     req.session.user = user;
 
-                                    res.send({
-                                        groupname:req_body.groupName
-                                    });
+                                    // 关注群组缓存
+                                    req.session.group = [];
+
+                                    var followgroupId = [];
+                                    for(var i = 0;i<req.session.user.followgroup.length;i++){
+                                        followgroupId.push(req.session.user.followgroup[i]);
+                                    }
+                                    Group.find({_id:{$in:followgroupId}},function(err,group){
+                                        if(err){
+                                            console.log(err)
+                                        }
+                                        req.session.group = group;
+                                        res.send({
+                                            groupname:req_body.groupName
+                                        });
+                                    })
                                 });
                             });
                         });
@@ -151,7 +164,6 @@ exports.editgroupintro = function(req, res) {
                     }
 
                     if (group.length = 1) {
-                        console.log(req_body.groupIntro)
                         group[0].intro = req_body.groupIntro;
                         group[0].link = req_body.groupLink;
                         group[0].weixin = req_body.groupWeixin;
@@ -175,23 +187,62 @@ var fs = require('fs'),
     gm = require('gm'),
     imageMagick = gm.subClass({ imageMagick : true });
 exports.savegroupimg = function(req, res){
-    var imgSrc = req.body.imgSrc;
-    console.log(req.body)
-    console.log(req.body.imgWidth)
-    console.log(req.body.imgHeight)
-    imageMagick(imgSrc)
-        .crop(req.body.imgWidth, req.body.imgHeight, req.body.imgX, req.body.imgY) //加('!')强行把图片缩放成对应尺寸150*150！
-        .resize(100, 100, '!')
-        .write('web/public/uploads/group/x.jpg', function(err){
+    var id = req.session.user._id,
+        req_body = req.body;
+    if (id) {
+        User.findById(id, function(err, user) {
             if (err) {
                 console.log(err);
-                res.end();
             }
-            res.send({
-                success:1
-            });
+            if (user) {
+
+                Group.find({name: req_body.groupName}, function(err, group) {
+                    if (err) {
+                        console.log(err);
+                    }
+
+                    if (group.length = 1) {
+                        //判断目录是否存在，不存在新建
+                        if(!fs.existsSync('web/public/uploads/group')){
+                            fs.mkdirSync('web/public/uploads/group');
+                        }
+                        var req_body = req.body;
+                        var imgSrc = req_body.imgSrc;
+                        imageMagick(imgSrc)
+                            .crop(req_body.imgWidth, req_body.imgHeight, req_body.imgX, req_body.imgY)
+                            .resize(100, 100, '!') //加('!')强行把图片缩放成对应尺寸100*100！
+                            .write('web/public/uploads/group/'+group[0]._id+'.jpg', function(err){
+                                if (err) {
+                                    console.log(err);
+                                    res.end();
+                                }
+                                group[0].img = '/uploads/group/'+group[0]._id+'.jpg';
+                                group[0].save(function(err, group) {
+                                    if (err) {
+                                        console.log(err);
+                                    }
+
+                                    // 关注群组缓存
+                                    req.session.group = [];
+
+                                    var followgroupId = [];
+                                    for(var i = 0;i<req.session.user.followgroup.length;i++){
+                                        followgroupId.push(req.session.user.followgroup[i]);
+                                    }
+                                    Group.find({_id:{$in:followgroupId}},function(err,group){
+                                        if(err){
+                                            console.log(err)
+                                        }
+                                        req.session.group = group;
+                                        res.send({
+                                            success:1
+                                        });
+                                    })
+                                });
+                            });
+                    }
+                });
+            }
         });
-// res.send({
-//                 success:1
-//             });
+    }
 }

@@ -6,7 +6,11 @@
         <div class="mygrouplist clearfix">
             {{#each groupArray}}
             <a href="/group/{{name}}" class="groupblock">
-                <img src="http://placehold.it/64x64/09f/fff">
+                {{#if img}}
+                <img src="{{img}}">
+                {{else}}
+                <img src="/img/groupimg.png">
+                {{/if}}
                 <span class="title">{{name}}</span>
                 <span class="intro">{{intro}}</span>
             </a>

@@ -1,6 +1,13 @@
-require(['jquery', 'handlebars', 'bootstrap','/js/common.js'], function($, Handlebars, Bootstrap) {
+require([
+    'jquery',
+    'handlebars',
+    'bootstrap',
+    '/js/jquery.ui.widget.js',
+    '/js/jquery.iframe-transport.js',
+    '/js/jquery.fileupload.js',
+    '/js/cropper.min.js',
+    '/js/common.js'], function($, Handlebars, Bootstrap) {
     var initEvt = function() {
-
         $('#nav-tabs').delegate('li', 'click', function() {
             var tab;
             $('#nav-tabs li').removeClass('active');
@@ -37,7 +44,8 @@ require(['jquery', 'handlebars', 'bootstrap','/js/common.js'], function($, Handl
         $('#me-page').delegate('#close-setting', 'click', function() {
             $(this).closest('.panel').remove();
         });
-    }, settingEvt = function() {
+    },
+    settingEvt = function() {
         $('#setting-tabs').delegate('li', 'click', function() {
             var tab, tpl;
             $('#setting-tabs li').removeClass('active');
@@ -52,6 +60,9 @@ require(['jquery', 'handlebars', 'bootstrap','/js/common.js'], function($, Handl
             }
             tpl = Handlebars.compile($('#set-' + tab + '-tpl').html());
             $('#setting-tab-content').html(tpl());//TODO:send in res to render tpl
+            if ($(this).hasClass('set-photo')) {
+                meUpload();
+            }
         }).delegate('#repwd-button', 'click', function() {
             $.ajax({
                 type: 'POST',
@@ -84,7 +95,59 @@ require(['jquery', 'handlebars', 'bootstrap','/js/common.js'], function($, Handl
                     alert(data.err);
                 }
             })
+        }).on('click','#userimg_submit',function(){
+            //上传头像
+            var imgSrc = $(".cropper > img").attr('src');
+            var imgData = $(".cropper > img").cropper('getData');
+            $.ajax({
+                url: 'http://localhost:3000/user/saveuserimg',
+                data: {
+                    imgSrc:imgSrc,
+                    imgX:imgData.x,
+                    imgY:imgData.y,
+                    imgWidth: imgData.width,
+                    imgHeight: imgData.height
+                },
+                type: 'POST',
+                success:function(data){
+                    if(data.success==1){
+                        window.location.href = window.location.href;
+                    }else{
+                        alert('保存失败');
+                    }
+                },
+                error: function(data){
+                    alert('保存失败')
+                }
+            });
         });;
+    },
+    meUpload = function(){
+        //上传图片
+        $('#fileupload').fileupload({
+            url: 'http://localhost:3000/json/uploadimg',
+            type: 'POST',
+            dataType: 'json',
+            acceptFileTypes:  /(\.|\/)(gif|jpe?g|png)$/i,
+            maxNumberOfFiles: 1,
+            submit: function(){
+                $(".cropper > img").cropper('destroy');
+            },
+            success: function(data){
+                $(".cropper > img").attr('src',data.files[0].url);
+                $(".cropper > img").cropper({
+                    aspectRatio: 1,
+                    minWidth: 300,
+                    minHeight: 300,
+                    maxWidth: 3000,
+                    maxHeight: 3000,
+                    preview:$('.cropper_preview'),
+                    done: function(data) {
+                        // Output the result data for cropping image.
+                    }
+                });
+            }
+        });
     };
     $(function() {
         initEvt();

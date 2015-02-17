@@ -5,7 +5,11 @@
         <li>
             <a href="/me">
                 <span class="menuimg">
-                    <img src="http://placehold.it/40x40/09f/fff">
+                    {{#if user.img}}
+                    <img src="{{user.img}}">
+                    {{else}}
+                    <img src="/img/groupimg.png">
+                    {{/if}}
                 </span>
                 <span class="menutext">{{user.name}}</span>
                 <sup>10</sup>
@@ -25,11 +29,15 @@
                 <sup>5</sup>
             </a>
         </li>
-        {{#each user.followgroup}}
+        {{#each group}}
         <li>
             <a href="/group/{{name}}">
                 <span class="menuimg">
-                    <img src="http://placehold.it/40x40/09f/fff">
+                    {{#if img}}
+                    <img src="{{img}}">
+                    {{else}}
+                    <img src="/img/groupimg.png">
+                    {{/if}}
                 </span>
                 <span class="menutext">{{name}}</span>
                 <sup>10</sup>

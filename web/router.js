@@ -12,8 +12,8 @@ var site = require('./controllers/site'),
 module.exports = function(app) {
     //pre handler user
     app.use(function(req, res, next) {
-        var _ = req.session.user;
-        app.locals.user = _;
+        app.locals.user = req.session.user;
+        app.locals.group = req.session.group;
         next();
     });
     app.get('/', site.index);
@@ -24,6 +24,7 @@ module.exports = function(app) {
     app.post('/user/repwd', user.repwd);
     app.post('/user/info', user.info);
     app.post('/user/followgroup', user.followgroup);
+    app.post('/user/saveuserimg', user.saveuserimg);
     // home
     app.get('/home', auth, site.home);
     //me

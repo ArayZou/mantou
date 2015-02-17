@@ -51,6 +51,24 @@ a {
 }
 // 全局样式 end
 
+// 上传按钮
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+}
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+}
+// 上传按钮 end
+
 // blocklist
 .blocklist{
     margin-right: -20px;
@@ -111,6 +129,8 @@ a {
         margin:0 20px 20px 0;
         img{
             float: left;
+            width: 64px;
+            height: 64px;
             margin-left: -64px;
             border-radius: 4px 0 0 4px;
         }
