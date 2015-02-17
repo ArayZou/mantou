@@ -73,11 +73,16 @@ function(
 
         //上传切图
         $('body').on('click','#cropper_submit',function(){
-            var imghref = $(".cropper > img").attr('src');
+            var imgSrc = $(".cropper > img").attr('src');
+            var imgData = $(".cropper > img").cropper('getData');
             $.ajax({
-                url: 'http://localhost:3000/json/savebase64img',
+                url: 'http://localhost:3000/group/savegroupimg',
                 data: {
-                    imghref:imghref,
+                    imgSrc:imgSrc,
+                    imgX:imgData.x,
+                    imgY:imgData.y,
+                    imgWidth: imgData.width,
+                    imgHeight: imgData.height
                 },
                 type: 'POST',
                 success:function(data){

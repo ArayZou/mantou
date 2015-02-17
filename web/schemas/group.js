@@ -12,6 +12,7 @@ groupSchema = new mongoose.Schema({
         ref: 'user'
     },
     intro: String,
+    img: String,
     link: String,
     weixin: String,
     weibo: String

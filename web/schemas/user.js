@@ -13,6 +13,7 @@ userSchema = new mongoose.Schema({
     followgroup: [{
         name: String
     }],
+    img: String,
     weibo: String,
     qq: String,
     sign: String,

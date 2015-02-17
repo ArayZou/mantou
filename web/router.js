@@ -36,6 +36,7 @@ module.exports = function(app) {
     app.get('/group/:groupname/manage', auth,  group.groupmanage);
     app.post('/group/creatgroup', group.creatgroup);
     app.post('/group/editgroupintro', group.editgroupintro);
+    app.post('/group/savegroupimg',group.savegroupimg);
     //article
     app.get('/group/:groupname/:articleid', auth, article);
     //post
@@ -48,5 +49,4 @@ module.exports = function(app) {
 
     // json
     app.use('/json/uploadimg',json.uploadimg);
-    app.post('/json/savebase64img',json.savebase64img);
 };

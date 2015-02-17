@@ -29,43 +29,4 @@ exports.uploadimg = function (req, res) {
     });
 }
 
-// 保存裁切图接口
-var fs = require('fs'),
-    gm = require('gm'),
-    imageMagick = gm.subClass({ imageMagick : true });
-exports.savebase64img = function(req, res){
-    var imghref = req.body.imghref;
-    imageMagick(imghref)
-        .resize(150, 150, '!') //加('!')强行把图片缩放成对应尺寸150*150！
-        .autoOrient()
-        .write(imghref, function(err){
-            if (err) {
-                console.log(err);
-                res.end();
-            }
-            fs.unlink(imghref, function() {
-                return res.end('3');
-            });
-        });
-    // gm('/public/uploads/CfJIiofSX4iKhmup.jpg')
-    // .options({imageMagick: true})
-    // .write('resize.jpg', function (err) {
-    //   if (!err) console.log('done');
-    //       res.send({
-    //         success:1
-    //     });
-    // });
-    // require("fs").writeFile("out.png", base64Data, 'base64', function(err) {
-    //     if(err){
-    //         console.log(err);
-    //     }
-    //     res.send({
-    //         success:1
-    //     });
-    // });
-    // res.send({
-    //     success:1
-    // });
-}
-
 

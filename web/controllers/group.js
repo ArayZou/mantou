@@ -170,3 +170,28 @@ exports.editgroupintro = function(req, res) {
         });
     }
 }
+// 保存群组图接口
+var fs = require('fs'),
+    gm = require('gm'),
+    imageMagick = gm.subClass({ imageMagick : true });
+exports.savegroupimg = function(req, res){
+    var imgSrc = req.body.imgSrc;
+    console.log(req.body)
+    console.log(req.body.imgWidth)
+    console.log(req.body.imgHeight)
+    imageMagick(imgSrc)
+        .crop(req.body.imgWidth, req.body.imgHeight, req.body.imgX, req.body.imgY) //加('!')强行把图片缩放成对应尺寸150*150！
+        .resize(100, 100, '!')
+        .write('web/public/uploads/group/x.jpg', function(err){
+            if (err) {
+                console.log(err);
+                res.end();
+            }
+            res.send({
+                success:1
+            });
+        });
+// res.send({
+//                 success:1
+//             });
+}

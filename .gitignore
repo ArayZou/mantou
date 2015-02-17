@@ -163,4 +163,12 @@ $RECYCLE.BIN/
 /web/public/css
 /web/public/dist
 /web/public/libs
-/web/public/uploads
+/web/public/uploads/*.jpg
+/web/public/uploads/*.png
+/web/public/uploads/*.gif
+/web/public/group/*.jpg
+/web/public/group/*.png
+/web/public/group/*.gif
+/web/public/user/*.jpg
+/web/public/user/*.png
+/web/public/user/*.gif
