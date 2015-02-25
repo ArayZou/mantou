@@ -9,7 +9,7 @@ groupSchema = new mongoose.Schema({
     groupId: Number,
     hoster:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user'
+        ref: 'User'
     },
     intro: String,
     img: String,

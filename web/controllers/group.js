@@ -30,7 +30,7 @@ exports.grouphome = function(req, res) {
                     break;
                 }
             }
-            Post.find({group:thisgroup[0]._id}, function(err, post) {
+            Post.find({group:thisgroup[0]._id}).populate({path:'floor.user'}).exec(function (err, post) {
                 if (err) {
                     console.log(err);
                 }
@@ -45,7 +45,7 @@ exports.grouphome = function(req, res) {
                     ifUserFollow:ifUserFollow,
                     ifHoster:ifHoster
                 });
-            });
+            })
         }
     });
 }
@@ -107,7 +107,8 @@ exports.creatgroup = function(req, res) {
                                 name: req_body.groupName,
                                 groupId: groupTotal + 1,
                                 hoster: req.session.user._id,
-                                intro: req_body.groupIntro
+                                intro: req_body.groupIntro,
+                                img:'/img/groupimg.png'
                             });
 
                             group.save(function(err, group) {

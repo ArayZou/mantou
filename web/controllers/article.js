@@ -8,23 +8,25 @@ Group = mongoose.model('Group');
 module.exports = function(req, res) {
     var groupName = req.params.groupname;
         articleid = req.params.articleid;
-    var groupPost = [],
+    var postArray = [],
         thisArticle = {};
+
     Group.find({name:groupName},function(err, thisgroup) {
         if (err) {
             console.log(err);
         }
         if (thisgroup.length>0){
-            Post.find({group:thisgroup[0]._id}, function(err, post) {
+
+            Post.find({group:thisgroup[0]._id}).populate({path:'floor.user'}).exec(function (err, post) {
                 if (err) {
                     console.log(err);
                 }
 
-                groupPost = post;
+                postArray = post;
 
-                for(var i = 0;i<groupPost.length;i++){
-                    if(groupPost[i].postId == articleid){
-                        thisArticle = groupPost[i];
+                for(var i = 0;i<postArray.length;i++){
+                    if(postArray[i].postId == articleid){
+                        thisArticle = postArray[i];
                         break;
                     }
                 }
@@ -33,10 +35,10 @@ module.exports = function(req, res) {
                     js:[{js:'group'}],
                     title: 'article-'+groupName,
                     groupname: groupName,
-                    groupPost: groupPost,
+                    postArray: postArray,
                     article : thisArticle
                 });
-            });
+            })
         }
     });
 }

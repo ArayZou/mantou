@@ -10,15 +10,14 @@ postSchema = new mongoose.Schema({
     floor:[{
         content: String,
         user: {
-            name : {
-                type: String
-            }
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
         },
         time: Date
     }],
     group: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'group'
+        ref: 'Group'
     },
     readtimes: Number
 });

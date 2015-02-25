@@ -6,7 +6,8 @@
             <h1 class="home_title">{{article.title}}</h1>
             <p>{{article.group.groupName}}</p>
             {{#each article.floor}}
-                {{@index}}
+                <p>-------------------------------------------</p>
+                <p>{{@index}}楼</p>
                 <p>{{content}}</p>
                 <p>{{user.name}}</p>
                 <p>{{time}}</p>

@@ -8,6 +8,7 @@ Group = mongoose.model('Group');
 //发帖
 exports.write = function(req, res) {
     var req_body = req.body;
+    var person = req.session.user;
 
     Post.find({title: req_body.postTitle}, function(err, post) {
         if (err) {
@@ -32,9 +33,7 @@ exports.write = function(req, res) {
                     postId: postTotal + 1,
                     floor: [{
                         content: req_body.postContent,
-                        user: {
-                            name:req_body.userName
-                        },
+                        user: person._id,
                         time: postdate
                     }]
                 });

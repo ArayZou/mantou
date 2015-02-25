@@ -20,7 +20,8 @@ exports.signup = function(req, res) {
         } else {
             user = new User({
                 name: req_body.name,
-                password: req_body.password
+                password: req_body.password,
+                img:'/img/groupimg.png'
             });
 
             user.save(function(err, user) {
