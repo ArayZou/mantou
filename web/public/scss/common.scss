@@ -98,13 +98,17 @@ a {
                 font-size: 28px;
                 color: #fff;
                 line-height: 34px;
+                overflow: hidden;
                 display: block;
                 margin-bottom: 10px;
             }
             .block_info{
                 font-size: 20px;
                 color: #fff;
-                line-height: 20px;
+                line-height: 24px;
+                height: 96px;
+                overflow: hidden;
+                display: block;
             }
         }
         &:hover{
