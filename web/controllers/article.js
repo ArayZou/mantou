@@ -17,7 +17,7 @@ module.exports = function(req, res) {
         }
         if (thisgroup.length>0){
 
-            Post.find({group:thisgroup[0]._id}).populate({path:'floor.user'}).exec(function (err, post) {
+            Post.find({group:thisgroup[0]._id}).populate({path:'floor.user group'}).exec(function (err, post) {
                 if (err) {
                     console.log(err);
                 }

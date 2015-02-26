@@ -2,15 +2,25 @@
     {{> menuBar }}
     <div class="groupcontent" id="mt-container">
         {{> groupMenu}}
-        <div class="groupbody">
-            <h1 class="home_title">{{article.title}}</h1>
-            <p>{{article.group.groupName}}</p>
+        <div class="groupbody articlebody">
+            <h1 class="article_title">{{article.title}}</h1>
+            <div class="article_btnline clearfix">
+                <span class="article_group">发自<a href="/group/{{article.group.name}}">{{article.group.name}}</a></span>
+                <a class="linebtn" id="article_comment" href="javascript:;"><i class="glyphicon glyphicon-comment"></i>跟帖</a>
+                <a class="linebtn" id="article_share" href="javascript:;"><i class="glyphicon glyphicon-share-alt"></i>分享</a>
+                <a class="linebtn" id="article_collect" href="javascript:;"><i class="glyphicon glyphicon-heart-empty"></i>收藏</a>
+            </div>
             {{#each article.floor}}
-                <p>-------------------------------------------</p>
-                <p>{{@index}}楼</p>
-                <p>{{content}}</p>
-                <p>{{user.name}}</p>
-                <p>{{time}}</p>
+            <div class="floor_info clearfix">
+                <a class="userinfo" href="javascript;;">
+                    <img src="{{user.img}}">
+                    <span class="username">{{user.name}}</span>
+                    <span class="posttime">{{time}}</span>
+                </a>
+                <span class="floornum">{{@index}}L</span>
+                <a class="commentbtn" href="javascript:;"><i class="glyphicon glyphicon-comment"></i>回复</a>
+            </div>
+            <div class="floor_con">{{content}}</div>
             {{/each}}
         </div>
     </div>
