@@ -42,6 +42,7 @@ module.exports = function(app) {
     app.get('/group/:groupname/:articleid', auth, article);
     //post
     app.post('/post/write', post.write);
+    app.post('/post/reply', post.reply);
     //find
     app.get('/findgroup', auth,  find.findgroup);
     app.get('/findarticle', auth,  find.findarticle);

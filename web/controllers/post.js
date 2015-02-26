@@ -64,3 +64,33 @@ exports.write = function(req, res) {
         }
     });
 };
+//跟帖
+exports.reply = function(req, res) {
+    var req_body = req.body;
+    var person = req.session.user;
+
+    Post.findOne({postId: req_body.articleid}, function(err, post) {
+        if (err) {
+            console.log(err);
+        }
+
+        console.log(post)
+        var replydate = new Date();
+        var newfloor = {
+            content: req_body.replyContent,
+            user: person._id,
+            time: replydate
+        }
+
+        post.floor.push(newfloor);
+
+        post.save(function(err, post) {
+            if (err) {
+                console.log(err);
+            }
+            res.send({
+                success:true
+            });
+        });
+    });
+};

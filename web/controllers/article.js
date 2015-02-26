@@ -23,20 +23,15 @@ module.exports = function(req, res) {
                 }
 
                 postArray = post;
-
-                for(var i = 0;i<postArray.length;i++){
-                    if(postArray[i].postId == articleid){
-                        thisArticle = postArray[i];
-                        break;
-                    }
-                }
-
-                res.render('article', {
-                    js:[{js:'group'}],
-                    title: 'article-'+groupName,
-                    groupname: groupName,
-                    postArray: postArray,
-                    article : thisArticle
+                Post.findOne({postId: articleid}).populate({path:'floor.user group'}).exec(function(err, post) {
+                    thisArticle = post;
+                    res.render('article', {
+                        js:[{js:'group'}],
+                        title: 'article-'+groupName,
+                        groupname: groupName,
+                        postArray: postArray,
+                        article : thisArticle
+                    });
                 });
             })
         }

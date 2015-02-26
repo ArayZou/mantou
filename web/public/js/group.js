@@ -35,6 +35,27 @@ function(
                 }
             })
         });
+        //跟帖
+        $('body').on('click','#replysubmit',function(){
+            var articleid = $('#articleid').val(),
+                replyContent = $('#reply_content').val();
+            $.ajax({
+                url: 'http://localhost:3000/post/reply',
+                data: {
+                    articleid:articleid,
+                    replyContent:replyContent
+                },
+                type: 'POST',
+                success: function(data){
+                    if(data.success){
+                        window.location.href = window.location.href;
+                    }
+                },
+                error: function(data){
+                    console.log(data)
+                }
+            })
+        });
         //关注群组
         $('body').on('click','#groupfollow_btn',function(){
             var $this = $(this);
