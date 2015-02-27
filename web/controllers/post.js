@@ -74,7 +74,6 @@ exports.reply = function(req, res) {
             console.log(err);
         }
 
-        console.log(post)
         var replydate = new Date();
         var newfloor = {
             content: req_body.replyContent,
