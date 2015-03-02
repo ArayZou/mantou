@@ -1,4 +1,5 @@
 var mongoose = require('mongoose'),
+    moment = require('moment'),
     Post,
     Group;
 require('../models/post');
@@ -18,7 +19,7 @@ module.exports = function(req, res) {
         }
         if (thisgroup.length>0){
 
-            Post.find({group:thisgroup[0]._id}).populate({path:'floor.user group'}).exec(function (err, post) {
+            Post.find({group:thisgroup[0]._id}).sort({'_id':-1}).populate({path:'floor.user group'}).exec(function (err, post) {
                 if (err) {
                     console.log(err);
                 }
@@ -28,6 +29,7 @@ module.exports = function(req, res) {
                     thisArticle = post;
                     for(var i= 0;i<thisArticle.floor.length;i++){
                         thisArticle.floor[i].content = marked(thisArticle.floor[i].content);
+                        thisArticle.floor[i].timeFomate = moment(thisArticle.floor[i].time).format('lll');
                     }
                     res.render('article', {
                         js:[{js:'group'}],

@@ -38,12 +38,12 @@ exports.write = function(req, res) {
                     }]
                 });
 
-                Group.find({name:req_body.groupName},function(err,groupdata){
+                Group.findOne({name:req_body.groupName},function(err,groupdata){
                     if (err) {
                         console.log(err);
                     }
-                    if(groupdata.length=1){
-                        post.group = groupdata[0]._id;
+                    if(groupdata){
+                        post.group = groupdata._id;
 
                         post.save(function(err, post) {
                             if (err) {

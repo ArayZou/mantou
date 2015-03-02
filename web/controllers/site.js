@@ -21,7 +21,7 @@ exports.index = function (req, res, next) {
 exports.home = function (req, res, next) {
     var postArray = [];
 
-    Post.find().populate({path:'group'}).exec(function(err, post) {
+    Post.find().sort({'_id':-1}).populate({path:'group'}).exec(function(err, post) {
         if (err) {
             console.log(err);
         }
