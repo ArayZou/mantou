@@ -18,7 +18,7 @@
                     <span class="posttime">{{time}}</span>
                 </a>
                 <span class="floornum">{{@index}}L</span>
-                <a class="commentbtn" data-toggle="modal" data-target="#reply-model"><i class="glyphicon glyphicon-comment"></i>回复</a>
+                <a class="commentbtn" data-toggle="modal" data-target="#reply-model" data-replyuser="{{user.name}}" data-floornum="{{@index}}"><i class="glyphicon glyphicon-comment"></i>回复</a>
             </div>
             <div class="floor_con">{{{content}}}</div>
             {{/each}}
@@ -38,8 +38,10 @@
                         <div class="form-horizontal">
                             <div class="form-group">
                                 <label for="post_content" class="col-sm-2 control-label">内容</label>
-                                <div class="col-sm-9 editorblock">
-                                    <textarea class="form-control" rows="6" id="reply_content"></textarea>
+                                <div class="col-sm-9">
+                                    <div class="editor_wrapper">
+                                        <textarea class="form-control" rows="6" id="reply_content"></textarea>
+                                    </div>
                                 </div>
                             </div>
                         </div>

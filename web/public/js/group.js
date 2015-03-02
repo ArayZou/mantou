@@ -2,7 +2,7 @@ require([
     'jquery',
     'bootstrap',
     '/js/marked.js',
-    '/js/editor.js',
+    '/js/bootstrap-markdown.js',
     '/js/common.js'
     ],
 function(
@@ -11,16 +11,20 @@ function(
     marked
 ) {
     $(function() {
-        if($('#post_content').length>0){
-            var postEditor = new Editor({
-                element: document.getElementById('post_content')
-            });
-            postEditor.render();
-        }
         //发文章
+        $('#post_content').markdown({
+            autofocus:false,
+            fullscreen: {
+                enable : false
+            },
+            height: 200
+        });
+        $('#post-model').on('show.bs.modal', function (event) {
+            $('#post_content').val('');
+        });
         $('body').on('click','#postsubmit',function(){
             var postTitle = $('#post_title').val(),
-                postContent = postEditor.codemirror.getValue(),
+                postContent = $('#post_content').val(),
                 groupName = $('#group_name').val(),
                 userName = $('#user_name').val();
             $.ajax({
@@ -44,24 +48,25 @@ function(
                 }
             })
         });
-        if($('#reply_content').length>0){
-            var replyEditor = new Editor({
-                element: document.getElementById('reply_content')
-            });
-            replyEditor.render();
-        }
+
+        //跟帖
+        $('#reply_content').markdown({
+            autofocus:false,
+            fullscreen: {
+                enable : false
+            },
+            height: 200
+        });
         $('#reply-model').on('show.bs.modal', function (event) {
             var $button = $(event.relatedTarget);
-            // var recipient = $button.data('whatever');
+            var username = $button.data('replyuser'),
+                floornum = $button.data('floornum');
 
-            var $this = $(this)
-            // $this.find('.modal-title').text('New message to ' + recipient)
-            // $this.find('.modal-body input').val(recipient)
+            $('#reply_content').val('To '+floornum+'L : @'+username+'\n');
         })
-        //跟帖
         $('body').on('click','#replysubmit',function(){
             var articleid = $('#articleid').val(),
-                replyContent = replyEditor.codemirror.getValue();
+                replyContent = $('#reply_content').val();
             $.ajax({
                 url: 'http://localhost:3000/post/reply',
                 data: {
