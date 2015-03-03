@@ -4,7 +4,11 @@
         <div id="me-page" class="me-page">
             <div class="img-name">
                 <span class="me-img">
-                    <img src="http://placehold.it/40x40/09f/fff">
+                    {{#if user.img}}
+                        <img src="{{user.img}}">
+                    {{else}}
+                        <img src="/img/groupimg.png">
+                    {{/if}}
                 </span>
                 <label>{{user.name}}</label>
             </div>

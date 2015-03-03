@@ -6,11 +6,15 @@
         left: 0;
         width: 100%;
     }
+    .img-name{
+        margin-bottom: 10px;
+        img{
+            height: 90px;
+            width: 90px;
+        }
+    }
 }
 
-.img-name{
-    margin-bottom: 10px;
-}
 
 .tabs{
     .nav-tabs{
