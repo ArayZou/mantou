@@ -12,13 +12,9 @@
                 <p class="groupintro">{{thisGroup.intro}}</p>
                 <p class="grouphoster">组长：<a href="javascript:;">{{thisGroup.hoster.name}}</a></p>
             </div>
-            <div class="group_menu clearfix">
-                <a href="/group/{{groupname}}">首页</a>
-                <a href="/group/{{groupname}}/about">关于我们</a>
-                {{#if ifHoster}}<a href="/group/{{groupname}}/manage">管理</a>{{/if}}
-            </div>
-            <p class="group_listttile">热门</p>
-            {{> blockList }}
+            <p class="groupabout_line">地址：{{thisGroup.link}}</p>
+            <p class="groupabout_line">微信：{{thisGroup.weixin}}</p>
+            <p class="groupabout_line">微博：{{thisGroup.weibo}}</p>
         </div>
     </div>
 </div>

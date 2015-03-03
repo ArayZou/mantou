@@ -1,3 +1,51 @@
+.groupinfo{
+    padding:0 0 0 120px;
+    margin-bottom: 20px;
+    .groupimg{
+        float: left;
+        margin:0 0 0 -120px;
+        width: 100px;
+        height: 100px;
+        border-radius: 4px;
+    }
+    .grouptitle{
+        height: 50px;
+        line-height: 50px;
+        h1{
+            float: left;
+            font-size: 46px;
+            margin:0 20px 0 0;
+        }
+    }
+    .groupintro,
+    .grouphoster{
+        height: 20px;
+        line-height: 20px;
+        font-size: 12px;
+        color: #666;
+    }
+}
+.group_menu{
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 20px;
+    a{
+        float: left;
+        font-size: 16px;
+        padding:0 5px;
+        margin:0 15px 0 0;
+    }
+}
+.group_listttile{
+    font-size: 20px;
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 10px;
+}
+.groupabout_line{
+    font-size: 14px;
+    line-height: 20px;
+}
 .groupmanage_formtab{
     width: 600px;
     .nav-tabs{

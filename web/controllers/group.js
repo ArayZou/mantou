@@ -16,21 +16,21 @@ exports.grouphome = function(req, res) {
     var person = req.session.user;
     var ifUserFollow = false;
     var ifHoster = false;
-    Group.find({name:groupName},function(err, thisgroup) {
+    Group.findOne({name:groupName}).populate({path:'hoster'}).exec(function(err, thisgroup) {
         if (err) {
             console.log(err);
         }
-        if (thisgroup.length>0){
-            if(thisgroup[0].hoster == person._id){
+        if (thisgroup){
+            if(thisgroup.hoster._id == person._id){
                 ifHoster = true;
             }
             for(var i = 0;i<person.followgroup.length;i++){
-                if(person.followgroup[i] == thisgroup[0]._id){
+                if(person.followgroup[i] == thisgroup._id){
                     ifUserFollow = true;
                     break;
                 }
             }
-            Post.find({group:thisgroup[0]._id}).sort({'_id':-1}).populate({path:'floor.user group'}).exec(function (err, post) {
+            Post.find({group:thisgroup._id}).sort({'_id':-1}).populate({path:'floor.user group'}).exec(function (err, post) {
                 if (err) {
                     console.log(err);
                 }
@@ -41,9 +41,46 @@ exports.grouphome = function(req, res) {
                     js:[{js:'group'}],
                     title: 'group-'+groupName,
                     groupname: groupName,
+                    thisGroup:thisgroup,
                     postArray: postArray,
                     ifUserFollow:ifUserFollow,
                     ifHoster:ifHoster
+                });
+            })
+        }
+    });
+}
+//群组about
+exports.groupabout = function(req, res){
+    var groupName = req.params.groupname;
+    var person = req.session.user;
+    var ifUserFollow = false;
+    Group.findOne({name:groupName}).populate({path:'hoster'}).exec(function(err, thisgroup) {
+        if (err) {
+            console.log(err);
+        }
+        if (thisgroup){
+
+            for(var i = 0;i<person.followgroup.length;i++){
+                if(person.followgroup[i] == thisgroup._id){
+                    ifUserFollow = true;
+                    break;
+                }
+            }
+            Post.find({group:thisgroup._id}).sort({'_id':-1}).populate({path:'floor.user group'}).exec(function (err, post) {
+                if (err) {
+                    console.log(err);
+                }
+
+                postArray = post;
+
+                res.render('groupabout', {
+                    js:[{js:'group'}],
+                    title: 'group-'+groupName+'-about',
+                    groupname: groupName,
+                    thisGroup:thisgroup,
+                    postArray: postArray,
+                    ifUserFollow:ifUserFollow
                 });
             })
         }
@@ -54,20 +91,20 @@ exports.groupmanage = function(req, res){
     var groupName = req.params.groupname;
     var person = req.session.user;
     var ifHoster = false;
-    Group.find({name:groupName},function(err, thisgroup) {
+    Group.findOne({name:groupName},function(err, thisgroup) {
         if (err) {
             console.log(err);
         }
-        if (thisgroup.length>0){
-            if(thisgroup[0].hoster == person._id){
+        if (thisgroup){
+            if(thisgroup.hoster == person._id){
                 ifHoster = true;
 
                 res.render('groupmanage', {
                     js:[
                         {js:'groupmanage'}
                     ],
-                    title: 'group-'+groupName+'管理',
-                    thisGroup: thisgroup[0]
+                    title: 'group-'+groupName+'-管理',
+                    thisGroup: thisgroup
                 });
             }else{
                 res.redirect('/');

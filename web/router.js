@@ -35,6 +35,7 @@ module.exports = function(app) {
     //group
     app.get('/group/:groupname', auth,  group.grouphome);
     app.get('/group/:groupname/manage', auth,  group.groupmanage);
+    app.get('/group/:groupname/about', group.groupabout);
     app.post('/group/creatgroup', group.creatgroup);
     app.post('/group/editgroupintro', group.editgroupintro);
     app.post('/group/savegroupimg',group.savegroupimg);
