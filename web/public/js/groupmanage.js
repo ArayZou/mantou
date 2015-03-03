@@ -1,10 +1,10 @@
 require([
     'jquery',
     'bootstrap',
-    '/js/jquery.ui.widget.js',
-    '/js/jquery.iframe-transport.js',
-    '/js/jquery.fileupload.js',
-    '/js/cropper.min.js',
+    '/js/plugins/jquery.ui.widget.js',
+    '/js/plugins/jquery.iframe-transport.js',
+    '/js/plugins/jquery.fileupload.js',
+    '/js/plugins/cropper.min.js',
     '/js/common.js'
     ],
 function(

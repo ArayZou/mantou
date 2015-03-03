@@ -1,8 +1,8 @@
 require([
     'jquery',
     'bootstrap',
-    '/js/marked.js',
-    '/js/bootstrap-markdown.js',
+    '/js/plugins/marked.js',
+    '/js/plugins/bootstrap-markdown.js',
     '/js/common.js'
     ],
 function(
