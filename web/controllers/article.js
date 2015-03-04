@@ -7,6 +7,11 @@ require('../models/group');
 Post = mongoose.model('Post');
 Group = mongoose.model('Group');
 var marked = require('marked');
+var renderer = new marked.Renderer();
+//禁止marked.js转换链接
+renderer.link = function ( href, title, text) {
+    return text;
+};
 module.exports = function(req, res) {
     var groupName = req.params.groupname;
         articleid = req.params.articleid;
@@ -28,7 +33,9 @@ module.exports = function(req, res) {
                 Post.findOne({postId: articleid}).populate({path:'floor.user group'}).exec(function(err, post) {
                     thisArticle = post;
                     for(var i= 0;i<thisArticle.floor.length;i++){
-                        thisArticle.floor[i].content = marked(thisArticle.floor[i].content);
+                        // 转换内容为Markdown格式
+                        thisArticle.floor[i].content = marked(thisArticle.floor[i].content,{renderer:renderer});
+                        // 日期格式转换
                         thisArticle.floor[i].timeFomate = moment(thisArticle.floor[i].time).format('lll');
                     }
                     res.render('article', {

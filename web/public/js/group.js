@@ -17,7 +17,8 @@ function(
             fullscreen: {
                 enable : false
             },
-            height: 200
+            height: 200,
+            hiddenButtons:['cmdUrl']
         });
         $('#post-model').on('show.bs.modal', function (event) {
             $('#post_content').val('');
@@ -55,7 +56,8 @@ function(
             fullscreen: {
                 enable : false
             },
-            height: 200
+            height: 200,
+            hiddenButtons:['cmdUrl']
         });
         $('#reply-model').on('show.bs.modal', function (event) {
             var $button = $(event.relatedTarget);
