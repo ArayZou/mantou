@@ -7,11 +7,19 @@ require('../models/group');
 Post = mongoose.model('Post');
 Group = mongoose.model('Group');
 var marked = require('marked');
-var renderer = new marked.Renderer();
+var floorRenderer = new marked.Renderer();
 //禁止marked.js转换链接
-renderer.link = function ( href, title, text) {
+floorRenderer.link = function ( href, title, text) {
     return text;
 };
+floorRenderer.paragraph = function(text){
+    var r,
+        ss = text;
+    r=ss.replace(/@[A-Za-z0-9_\-\u4e00-\u9fa5_\d]+/g, function(word){
+        return "<a href=\""+ word +"\">" + word + "</a>";}
+    );
+    return r;
+}
 module.exports = function(req, res) {
     var groupName = req.params.groupname;
         articleid = req.params.articleid;
@@ -34,7 +42,7 @@ module.exports = function(req, res) {
                     thisArticle = post;
                     for(var i= 0;i<thisArticle.floor.length;i++){
                         // 转换内容为Markdown格式
-                        thisArticle.floor[i].content = marked(thisArticle.floor[i].content,{renderer:renderer});
+                        thisArticle.floor[i].content = marked(thisArticle.floor[i].content,{renderer:floorRenderer,breaks:true});
                         // 日期格式转换
                         thisArticle.floor[i].timeFomate = moment(thisArticle.floor[i].time).format('lll');
                     }

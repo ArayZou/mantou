@@ -1,8 +1,8 @@
 require([
     'jquery',
     'bootstrap',
-    '/js/plugins/marked.js',
-    '/js/plugins/bootstrap-markdown.js',
+    'marked',
+    'markdownjs',
     '/js/common.js'
     ],
 function(
@@ -64,7 +64,7 @@ function(
             var username = $button.data('replyuser'),
                 floornum = $button.data('floornum');
 
-            $('#reply_content').val('To '+floornum+'L : @'+username+'\n');
+            $('#reply_content').val('To '+floornum+'L : @'+username+'： ');
         })
         $('body').on('click','#replysubmit',function(){
             var articleid = $('#articleid').val(),
