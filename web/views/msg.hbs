@@ -1,0 +1,84 @@
+<div class="webbody clearfix">
+    {{> menuBar}}
+    <div class="mtcontent" id="mt-container">
+        <div id="msg-page" class="msg-page">
+            <div class="title">
+                <span class="msg-icon">
+                    <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
+                    消息
+                </span>
+            </div>
+            <div class="tabs" id="msg-tabs">
+                <ul class="nav nav-tabs">
+                    <li class="at-me">
+                        <a>@我</a>
+                    </li>
+                    <li class="pri-msg">
+                        <a>私信</a>
+                    </li>
+                    <button id="send-msg" class="btn btn-msg pull-right hidden" data-toggle="modal" data-target="#send-msg-dialog">
+                        写私信
+                    </button>
+                </ul>
+                <div id="msg-tab-content" class="tab-content"></div>
+            </div>
+        </div>
+    </div>
+    <div id="#send-msg-dialog" class="modal">
+        <div lcass="modal-dialog">
+            <form action="/msg/sendmsg" method="POST" role="form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title">
+                            写私信
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label for="send-to" class="col-sm-2 control-label">发送给</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="send-to" name="name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" id="send-content" name="content"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-send"></span>
+                            发送
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-handlebars" id="at-me-tpl">
+    <div class="content">
+        \{{#if atmes}}
+            show @我
+        \{{^}}
+            没有人@我
+        \{{/if}}
+    </div>
+</script>
+
+<script type="text/x-handlebars" id="pri-msg-tpl">
+    <div class="content">
+        \{{#if primsgs}}
+            show primsgs
+        \{{^}}
+            什么私信都没有...
+        \{{/if}}
+    </div>
+</script>

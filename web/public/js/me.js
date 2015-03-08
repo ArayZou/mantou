@@ -21,7 +21,7 @@ require([
 
             $.ajax({
                 type: 'GET',
-                url: '/me/' + tab,
+                url: '/me/' + tab
             }).then(function(data) {
                 var res, tpl;
                 if (data.success) {

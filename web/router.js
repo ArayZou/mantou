@@ -1,6 +1,7 @@
 var site = require('./controllers/site'),
     user = require('./controllers/user'),
     me = require('./controllers/me'),
+    msg = require('./controllers/msg'),
     group = require('./controllers/group'),
     post = require('./controllers/post'),
     article = require('./controllers/article'),
@@ -32,6 +33,10 @@ module.exports = function(app) {
     app.get('/me/collect', auth,  me.col);
     app.get('/me/pub', auth,  me.pub);
     app.get('/me/setting/:type', auth,  me.setting);
+    //message
+    app.get('/msg', auth, msg.show);
+    app.get('/msg/atme', auth, msg.atme);
+    app.get('/msg/primsg', auth, msg.primsg);
     //group
     app.get('/group/:groupname', auth,  group.grouphome);
     app.get('/group/:groupname/manage', auth,  group.groupmanage);
