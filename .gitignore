@@ -159,6 +159,7 @@ $RECYCLE.BIN/
 .DS_Store
 /node_modules
 
+.idea
 /web/public/.css
 /web/public/css
 /web/public/dist
